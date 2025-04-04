@@ -33,7 +33,6 @@ export function getBrandName(lang: SupportedLocale): string {
 export const privacyPolicyNames: Record<SupportedLocale, string> = {
   en: "Privacy",
   zh: "隐私政策",
-  fr: "Confidentialité",
 };
 
 
@@ -49,7 +48,6 @@ export function getSupportedLanguages(): string[] {
 export function getLanguageNames(): Record<string, string> {
   return languageNames;
 }
-
 
 export function getPrivacyPolicyName(lang: SupportedLocale): string {
   return privacyPolicyNames[lang] ?? privacyPolicyNames.en;
