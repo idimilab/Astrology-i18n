@@ -61,5 +61,23 @@ export default defineConfig({
     config: {
       forward: ["dataLayer.push"],
     },
-  }), sitemap()],
+  }), 
+  sitemap({
+    i18n: {
+      defaultLocale: 'en',
+      locales: {
+        en: 'en-US',
+        zh: 'zh-CN',
+        fr: 'fr-CA',
+        es: 'es-ES',
+        ru: 'ru-RU',
+        ja: 'ja-JP',
+        ko: 'ko-KR',
+        pt: 'pt-BR',
+        de: 'de-DE',
+        id: 'id-ID',
+      },
+    },
+  }),
+],
 });
