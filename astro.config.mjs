@@ -46,16 +46,15 @@ export default defineConfig({
       ],
     ],
   },
-  integrations: [
-    sitemap({
-      i18n: {
-        defaultLocale: 'en',
-        locales: {
-          en: 'en-US',
-          zh: 'zh-CN',
-          },
-        },
-    }), 
+  integrations: [sitemap({
+    i18n: {
+      defaultLocale: 'en',
+      locales: {
+        en: 'en-US',
+        zh: 'zh-CN',
+      },
+    },
+  }), 
     mdx(), 
     pagefind(), 
     icon({
