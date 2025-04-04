@@ -1,7 +1,7 @@
 {
   "name": "astrology",
   "type": "module",
-  "version": "5.1.1",
+  "version": "5.6.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
