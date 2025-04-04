@@ -48,7 +48,6 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      xslURL: '/sitemap.xsl',
       i18n: {
         defaultLocale: 'en',
         locales: {
