@@ -62,12 +62,14 @@
           .alternate-link {
             display: inline-block;
             margin-right: 15px;
+            margin-bottom: 8px;
             color: #666;
             text-decoration: none;
             padding: 4px 8px;
             background: #f0f0f0;
             border-radius: 4px;
             font-size: 0.9em;
+            transition: all 0.2s ease;
           }
           .alternate-link:hover {
             color: #1a73e8;
@@ -108,6 +110,17 @@
             color: #2c3e50;
             text-decoration: none;
           }
+          .language-group {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+          }
+          .language-group-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+          }
           @media (max-width: 768px) {
             body {
               padding: 10px;
@@ -117,6 +130,10 @@
             }
             .url-item, .sitemap-index-item {
               padding: 10px;
+            }
+            .alternate-link {
+              display: block;
+              margin-bottom: 8px;
             }
           }
         </style>
@@ -159,14 +176,17 @@
                     最后更新: <xsl:value-of select="sitemap:lastmod"/>
                   </div>
                   <div class="alternate-links">
-                    <xsl:for-each select="xhtml:link">
-                      <a class="alternate-link" href="{@href}">
-                        <span class="language-tag">
-                          <xsl:value-of select="@hreflang"/>
-                        </span>
-                        <xsl:value-of select="@href"/>
-                      </a>
-                    </xsl:for-each>
+                    <div class="language-group">
+                      <div class="language-group-title">多语言版本：</div>
+                      <xsl:for-each select="xhtml:link">
+                        <a class="alternate-link" href="{@href}">
+                          <span class="language-tag">
+                            <xsl:value-of select="@hreflang"/>
+                          </span>
+                          <xsl:value-of select="@href"/>
+                        </a>
+                      </xsl:for-each>
+                    </div>
                   </div>
                 </li>
               </xsl:for-each>
