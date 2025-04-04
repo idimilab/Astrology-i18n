@@ -61,6 +61,15 @@
             font-size: 0.8em;
             margin-right: 5px;
           }
+          .sitemap-index {
+            margin-top: 20px;
+          }
+          .sitemap-index-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+          }
           @media (max-width: 768px) {
             body {
               padding: 10px;
@@ -73,25 +82,48 @@
       </head>
       <body>
         <h1>Sitemap</h1>
-        <ul class="url-list">
-          <xsl:for-each select="urlset/url">
-            <li class="url-item">
-              <a class="loc" href="{loc}">
-                <xsl:value-of select="loc"/>
-              </a>
-              <div class="alternate-links">
-                <xsl:for-each select="xhtml:link">
-                  <a class="alternate-link" href="{@href}">
-                    <span class="language-tag">
-                      <xsl:value-of select="@hreflang"/>
-                    </span>
-                    <xsl:value-of select="@href"/>
+        
+        <!-- 处理 sitemap-index.xml -->
+        <xsl:if test="sitemapindex">
+          <div class="sitemap-index">
+            <h2>Sitemap Index</h2>
+            <ul class="url-list">
+              <xsl:for-each select="sitemapindex/sitemap">
+                <li class="sitemap-index-item">
+                  <a class="loc" href="{loc}">
+                    <xsl:value-of select="loc"/>
                   </a>
-                </xsl:for-each>
-              </div>
-            </li>
-          </xsl:for-each>
-        </ul>
+                  <div>
+                    Last Modified: <xsl:value-of select="lastmod"/>
+                  </div>
+                </li>
+              </xsl:for-each>
+            </ul>
+          </div>
+        </xsl:if>
+
+        <!-- 处理 sitemap-0.xml -->
+        <xsl:if test="urlset">
+          <div class="url-list">
+            <xsl:for-each select="urlset/url">
+              <li class="url-item">
+                <a class="loc" href="{loc}">
+                  <xsl:value-of select="loc"/>
+                </a>
+                <div class="alternate-links">
+                  <xsl:for-each select="xhtml:link">
+                    <a class="alternate-link" href="{@href}">
+                      <span class="language-tag">
+                        <xsl:value-of select="@hreflang"/>
+                      </span>
+                      <xsl:value-of select="@href"/>
+                    </a>
+                  </xsl:for-each>
+                </div>
+              </li>
+            </xsl:for-each>
+          </div>
+        </xsl:if>
       </body>
     </html>
   </xsl:template>
