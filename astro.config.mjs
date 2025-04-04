@@ -12,7 +12,7 @@ import sitemap from "@astrojs/sitemap";
 
 
 export default defineConfig({
-  site: "https://astrology-i18n-vercel.app",
+  site: "https://astrology-i18n.vercel.app",
   trailingSlash: "always",
   prefetch: true,
   vite: {
