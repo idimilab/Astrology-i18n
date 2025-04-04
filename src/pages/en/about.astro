@@ -1,0 +1,125 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import OptimizedCover from "@components/OptimizedPicture.astro";
+import { Icon } from "astro-icon/components";
+import LatestPosts from "@components/LatestPosts.astro";
+import { getConstants } from "@consts";
+
+const currentLocale = "en";
+const constants = getConstants(currentLocale);
+
+const title = `About ${constants.SITE_TITLE}`;
+const description = constants.SITE_DESCRIPTION;
+const tabs = [
+  {
+    icon: "tabler:yoga",
+    title: "Life",
+    content:
+      "In the river of life, every rise and fall is a form of accumulation, and every journey is a rainbow after the storm.",
+    image: "https://astrology-media-1251069384.cos.ap-hongkong.myqcloud.com/images/202409272055578.avif",
+    imageAlt: "About Astrology - Life",
+  },
+  {
+    icon: "tabler:swimming",
+    title: "Investment",
+    content:
+      "Moving through the fog, perceiving the light of the future, turning every decision into a note of time and wisdom.",
+    image: "https://astrology-media-1251069384.cos.ap-hongkong.myqcloud.com/images/202409272055577.avif",
+    imageAlt: "About Astrology - Investment",
+  },
+  {
+    icon: "tabler:run",
+    title: "Startup",
+    content:
+      "Fighting in the waves of dreams, every difficult step is a stepping stone toward the other shore. Rising against the wind, light will eventually be seen.",
+    image: "https://astrology-media-1251069384.cos.ap-hongkong.myqcloud.com/images/202409272055575.avif",
+    imageAlt: "About Astrology - Startup",
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <h1 class="sr-only">About Astrology</h1>
+    <div class="relative p-6 md:p-16">
+      <div
+        class="relative z-10 lg:grid lg:grid-cols-12 lg:items-center lg:gap-16"
+      >
+        <div class="mb-10 lg:order-2 lg:col-span-6 lg:col-start-8 lg:mb-0">
+          <h2
+            class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 sm:text-3xl"
+          >
+            {description}
+          </h2>
+
+          <nav
+            class="mt-5 grid gap-4 md:mt-10"
+            aria-label="Tabs"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            {
+              tabs.map((tab, index) => (
+                <button
+                  type="button"
+                  class={`rounded-xl p-4 text-start hover:bg-neutral-200 focus:bg-neutral-200 focus:outline-none hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:hs-tab-active:bg-neutral-700 md:p-5 ${index === 0 ? "active" : ""}`}
+                  id={`tabs-with-card-item-${index + 1}`}
+                  data-hs-tab={`#tabs-with-card-${index + 1}`}
+                  aria-controls={`tabs-with-card-${index + 1}`}
+                  role="tab"
+                >
+                  <span class="flex gap-x-6">
+                    <Icon
+                      name={tab.icon}
+                      class="mt-2 size-6 shrink-0 text-neutral-800 hs-tab-active:text-neutral-600 dark:text-neutral-200 dark:hs-tab-active:text-neutral-500 md:size-7"
+                    />
+                    <span class="grow">
+                      <span class="block text-lg font-semibold text-neutral-800 hs-tab-active:text-neutral-600 dark:text-neutral-200 dark:hs-tab-active:text-neutral-500">
+                        {tab.title}
+                      </span>
+                      <span class="mt-1 block text-neutral-800 dark:text-neutral-200 dark:hs-tab-active:text-neutral-200">
+                        {tab.content}
+                      </span>
+                    </span>
+                  </span>
+                </button>
+              ))
+            }
+          </nav>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="relative">
+            <div>
+              {
+                tabs.map((tab, index) => (
+                  <div
+                    id={`tabs-with-card-${index + 1}`}
+                    class={index === 0 ? "" : "hidden"}
+                    role="tabpanel"
+                    aria-labelledby={`tabs-with-card-item-${index + 1}`}
+                  >
+                    <OptimizedCover
+                      class="rounded-xl shadow-xl shadow-neutral-200 dark:shadow-neutral-900/20"
+                      src={tab.image}
+                      alt={tab.imageAlt}
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute inset-0 grid size-full grid-cols-12">
+        <div
+          class="col-span-full h-5/6 w-full rounded-xl bg-neutral-100 dark:bg-neutral-800 sm:h-3/4 lg:col-span-7 lg:col-start-6 lg:h-full"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2 class="sr-only">Latest Posts</h2>
+  <LatestPosts currentLocale={currentLocale} />
+</BaseLayout>

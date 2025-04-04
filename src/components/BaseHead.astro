@@ -1,0 +1,157 @@
+---
+import MetaSEO from "@seo/MetaSEO.astro";
+import GlobalSchema from "@seo/GlobalSchema.astro";
+import { getCurrentLocale, getBrandName } from "@utils/localeUtils";
+import type { SupportedLocale } from "@consts";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  charset?: string;
+  languageAlternates?: Array<{ href: string; hrefLang: string }>;
+}
+
+const {
+  title,
+  description,
+  image,
+  canonical,
+  noindex = false,
+  nofollow = false,
+  charset = "UTF-8",
+  languageAlternates = [],
+} = Astro.props;
+
+const currentLocale: SupportedLocale = getCurrentLocale(Astro.url.pathname);
+const brandName = getBrandName(currentLocale);
+
+const formattedTitle = title.includes(brandName)
+  ? title
+  : `${title} | ${brandName}`;
+
+const canonicalURL =
+  canonical || new URL(Astro.url.pathname, Astro.site).toString();
+
+function getAlternateLocaleUrl(targetLocale: string): string {
+  const pathParts = Astro.url.pathname.split("/").filter(Boolean);
+  if (pathParts[0] === currentLocale) {
+    pathParts[0] = targetLocale;
+  } else if (pathParts[0] === "posts" && pathParts.length >= 3) {
+    pathParts[1] = targetLocale;
+  } else {
+    pathParts.unshift(targetLocale);
+  }
+  return new URL("/" + pathParts.join("/"), Astro.site).toString();
+}
+
+const supportedLocales: string[] = ["zh", "en", "ja", "ko", "pt", "de", "id", "fr", "es", "ru"];
+
+const alternateUrls: Record<string, string> = supportedLocales.reduce(
+  (acc: Record<string, string>, locale: string) => {
+    acc[locale] = getAlternateLocaleUrl(locale);
+    return acc;
+  },
+  {}
+);
+
+const localeAlternateMap: Record<string, string> = {
+  zh: "zh_CN",
+  en: "en_US",
+  fr: "fr_FR",
+  es: "es_ES",
+  ru: "ru_RU",
+  ja: "ja_JP",
+  ko: "ko_KR",
+  pt: "pt_PT",
+  de: "de_DE",
+  id: "id_ID",
+};
+
+const localeAlternate: string[] = supportedLocales.map((locale: string) => localeAlternateMap[locale]);
+
+const defaultImage = new URL("/astrology-background.avif", Astro.site).toString();
+---
+<meta charset={charset} />
+
+<GlobalSchema />
+
+<MetaSEO
+  title={formattedTitle}
+  description={description}
+  canonical={canonicalURL}
+  noindex={noindex}
+  nofollow={nofollow}
+  charset={charset}
+  languageAlternates={[
+    ...languageAlternates,
+    ...supportedLocales.map((locale) => ({
+      href: alternateUrls[locale],
+      hrefLang: locale,
+    })),
+  ]}
+  openGraph={{
+    basic: {
+      title: formattedTitle,
+      type: "website",
+      image: image ? new URL(image, Astro.site).toString() : defaultImage,
+      url: canonicalURL,
+    },
+    optional: {
+      siteName: brandName,
+      locale: localeAlternateMap[currentLocale] || currentLocale,
+      description: description,
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    site: "@astrologylab",
+    creator: "@astrologylab",
+    title: formattedTitle,
+    description: description,
+    image: image ? new URL(image, Astro.site).toString() : defaultImage,
+    imageAlt: `${brandName} - ${title}`,
+  }}
+  extend={{
+    link: [
+      { rel: "icon", href: "/favicon.ico" },
+      { rel: "sitemap", href: "/sitemap-index.xml" },
+      ...languageAlternates.map(({ href, hrefLang }) => ({
+        rel: "alternate",
+        href,
+        hreflang: hrefLang,
+      })),
+    ],
+    meta: [
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "generator", content: Astro.generator },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalURL },
+      { property: "og:title", content: formattedTitle },
+      { property: "og:description", content: description },
+      { property: "og:image", content: image ? new URL(image, Astro.site).href : defaultImage },
+      { property: "twitter:card", content: "summary_large_image" },
+      { property: "twitter:url", content: canonicalURL },
+      { property: "twitter:title", content: formattedTitle },
+      { property: "twitter:description", content: description },
+      { property: "twitter:image", content: image ? new URL(image, Astro.site).href : defaultImage },
+    ],
+  }}
+  currentLocale={localeAlternateMap[currentLocale] || currentLocale}
+  localeAlternate={localeAlternate}
+  defaultImage={defaultImage}
+/>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={brandName}
+  href={new URL("rss.xml", Astro.site)}
+/>

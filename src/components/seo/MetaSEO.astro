@@ -1,0 +1,102 @@
+---
+import { SEO } from "astro-seo";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  charset?: string;
+  languageAlternates?: Array<{ href: string; hrefLang: string }>;
+  openGraph?: {
+    basic: {
+      title: string;
+      type: string;
+      image: string;
+      url?: string | URL;
+    };
+    optional?: {
+      audio?: string;
+      description?: string;
+      determiner?: string;
+      locale?: string;
+      siteName?: string;
+      video?: string;
+    };
+  };
+  twitter?: {
+    card?: "summary" | "summary_large_image" | "app" | "player";
+    site?: string;
+    creator?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+    imageAlt?: string;
+  };
+  extend?: {
+    link?: Array<{ rel: string; href: string; hreflang?: string }>;
+    meta?: Array<{ name?: string; content: string; property?: string }>;
+  };
+  currentLocale: string;
+  localeAlternate: string[];
+  defaultImage: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  noindex = false,
+  nofollow = false,
+  charset = "UTF-8",
+  languageAlternates = [],
+  openGraph,
+  twitter,
+  extend = { link: [], meta: [] },
+  currentLocale,
+  localeAlternate,
+  defaultImage,
+} = Astro.props as Props;
+
+// 确保 openGraph.basic.image 和 twitter.image 有默认值
+const ogImage = openGraph?.basic?.image || defaultImage;
+const twitterImage = twitter?.image || defaultImage;
+---
+<SEO
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={noindex}
+  nofollow={nofollow}
+  charset={charset}
+  languageAlternates={languageAlternates}
+  openGraph={{
+    basic: {
+      title: openGraph?.basic?.title ?? title,
+      type: openGraph?.basic?.type ?? 'website',
+      image: ogImage,
+      url: openGraph?.basic?.url ?? canonical,
+    },
+    optional: {
+      ...(openGraph?.optional || {}),
+    },
+  }}
+  twitter={{
+    ...twitter,
+    image: twitterImage,
+  }}
+  extend={{
+    ...extend,
+    meta: [
+      ...(extend.meta || []),
+      { property: "og:locale", content: currentLocale },
+      ...localeAlternate
+        .filter((locale) => locale !== currentLocale)
+        .map((locale) => ({
+          property: "og:locale:alternate",
+          content: locale,
+        })),
+    ],
+  }}
+/>

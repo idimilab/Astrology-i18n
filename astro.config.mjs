@@ -1,0 +1,93 @@
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import { remarkModifiedTime } from "./src/utils/remark-modified-time.mjs";
+import sitemap from "@astrojs/sitemap";
+import pagefind from "astro-pagefind";
+import icon from "astro-icon";
+import mdx from "@astrojs/mdx";
+import rehypeExternalLinks from "rehype-external-links";
+import partytown from "@astrojs/partytown";
+
+
+export default defineConfig({
+  site: "https://astrology-i18n-vercel.app",
+  trailingSlash: "always",
+  prefetch: true,
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  i18n: {
+    defaultLocale: "en",
+    locales: [
+      "zh",
+      "en",
+      "fr",
+      "es",
+      "ru",
+      "ja",
+      "ko",
+      "pt",
+      "de",
+      "id",
+    ],
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
+    },
+  },
+  image: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.unsplash.com",
+      },
+    ],
+  },
+  markdown: {
+    remarkPlugins: [remarkModifiedTime],
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          content: { type: "text", value: " ↗" },
+        },
+      ],
+    ],
+  },
+  integrations: [
+    sitemap({
+      xslURL: '/sitemap.xsl',
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en-US',
+          zh: 'zh-CN',
+          fr: 'fr-CA',
+          es: 'es-ES',
+          ru: 'ru-RU',
+          ja: 'ja-JP',
+          ko: 'ko-KR',
+          pt: 'pt-BR',
+          de: 'de-DE',
+          id: 'id-ID',
+          },
+        },
+    }), 
+    mdx(), 
+    pagefind(), 
+    icon({
+      include: {
+        tabler: ["*"],
+        mdi: ["*"],
+        "emojione-monotone": ["*"],
+        "material-symbols": ["*"],
+        flagpack: ["*"],
+        "flat-color-icons": ["*"],
+      },
+    }), 
+  partytown({
+    config: {
+      forward: ["dataLayer.push"],
+    },
+  })],
+});

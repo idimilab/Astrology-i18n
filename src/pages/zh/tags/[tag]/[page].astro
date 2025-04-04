@@ -1,0 +1,101 @@
+---
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PostCard from "@components/CommonCard.astro";
+import Pagination from "@components/Pagination.astro";
+import { getTagMetadata } from "@consts";
+import { getEnglishTag, getTagByLanguage } from "@utils/tagMapping";
+import TagsSchema from "@seo/TagsSchema.astro";
+
+type Post = CollectionEntry<"posts">;
+
+interface PageProps {
+  data: Post[];
+  currentPage: number;
+  lastPage: number;
+}
+
+export const getStaticPaths = (async () => {
+  const allPosts = await getCollection("posts", ({ id }) =>
+    id.startsWith("zh/"),
+  );
+
+  const allCommonTags = allPosts.flatMap((post) =>
+    post.data.tags.map((tag) => getEnglishTag(tag, "zh")),
+  );
+  const uniqueTags = [...new Set(allCommonTags)];
+
+  return uniqueTags.flatMap((tag) => {
+    const filteredPosts = allPosts.filter((post) => {
+      const postCommonTags = post.data.tags.map((tag) =>
+        getEnglishTag(tag, "zh"),
+      );
+      return postCommonTags.includes(tag);
+    });
+
+    filteredPosts.sort(
+      (a, b) =>
+        new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+    );
+
+    const pageSize = 12;
+    const totalPages = Math.ceil(filteredPosts.length / pageSize);
+
+    return Array.from({ length: totalPages }, (_, index) => ({
+      params: { tag, page: (index + 1).toString() },
+      props: {
+        page: {
+          data: filteredPosts.slice(index * pageSize, (index + 1) * pageSize),
+          currentPage: index + 1,
+          lastPage: totalPages,
+        },
+      },
+    }));
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: PageProps;
+}
+
+const { tag } = Astro.params;
+const { page } = Astro.props as Props;
+
+if (typeof tag !== "string") {
+  throw new Error("Invalid tag parameter");
+}
+
+const currentLocale = "zh";
+const localizedTag = getTagByLanguage(tag, "en", "zh");
+const { title, description } = getTagMetadata(localizedTag, currentLocale);
+---
+<BaseLayout title={title} description={description}>
+  <TagsSchema tag={localizedTag} page={page} locale="zh" />
+  <h1 class="sr-only">标签 "{localizedTag}" 下的所有文章</h1>
+  <h2 class="sr-only">文章列表</h2>
+
+  <div class="mx-auto max-w-4xl px-4 py-8">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {page.data.map((post) => <PostCard post={post} />)}
+    </div>
+
+    <Pagination
+      currentPage={page.currentPage}
+      lastPage={page.lastPage}
+      urlPrev={
+        page.currentPage > 1
+          ? `/zh/tags/${tag}/${page.currentPage - 1}`
+          : null
+      }
+      urlNext={
+        page.currentPage < page.lastPage
+          ? `/zh/tags/${tag}/${page.currentPage + 1}`
+          : null
+      }
+      basePath={`/zh/tags/${tag}`}
+      maxDisplayedPages={5}
+    />
+  </div>
+</BaseLayout>
