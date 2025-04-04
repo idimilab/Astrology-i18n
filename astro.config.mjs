@@ -6,10 +6,7 @@ import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import rehypeExternalLinks from "rehype-external-links";
 import partytown from "@astrojs/partytown";
-
-
 import sitemap from "@astrojs/sitemap";
-
 
 export default defineConfig({
   site: "https://astrology-i18n.vercel.app",
@@ -63,6 +60,7 @@ export default defineConfig({
     },
   }), 
   sitemap({
+    xslURL: '/sitemap.xsl',
     i18n: {
       defaultLocale: 'en',
       locales: {
@@ -70,6 +68,5 @@ export default defineConfig({
         zh: 'zh-CN',
       },
     },
-  }),
-],
+  })],
 });
