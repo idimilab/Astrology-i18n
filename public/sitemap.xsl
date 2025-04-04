@@ -163,7 +163,6 @@
     </html>
   </xsl:template>
 
-  <!-- 默认的 sitemap-index.xml 模板 -->
   <xsl:template match="sitemap:sitemapindex">
     <xsl:copy-of select="."/>
   </xsl:template>
