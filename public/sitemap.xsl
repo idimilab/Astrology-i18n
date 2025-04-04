@@ -15,184 +15,101 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: #f5f5f5;
-          }
-          .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
           }
           h1 {
             color: #2c3e50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 0;
+            margin: 0 0 20px 0;
+            font-size: 24px;
           }
           .url-list {
             list-style: none;
             padding: 0;
+            margin: 0;
           }
           .url-item {
-            background: #f9f9f9;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #eee;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
           }
           .loc {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            display: block;
+            color: #1a73e8;
             text-decoration: none;
+            font-size: 16px;
           }
           .loc:hover {
-            color: #1a73e8;
-          }
-          .alternate-links {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #eee;
-          }
-          .alternate-link {
-            display: inline-block;
-            margin-right: 15px;
-            margin-bottom: 8px;
-            color: #666;
-            text-decoration: none;
-            padding: 4px 8px;
-            background: #f0f0f0;
-            border-radius: 4px;
-            font-size: 0.9em;
-            transition: all 0.2s ease;
-          }
-          .alternate-link:hover {
-            color: #1a73e8;
-            background: #e8f0fe;
-          }
-          .language-tag {
-            background: #e0e0e0;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-right: 5px;
-            color: #666;
-          }
-          .sitemap-index {
-            margin-top: 20px;
-          }
-          .sitemap-index-item {
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            border: 1px solid #eee;
+            text-decoration: underline;
           }
           .lastmod {
             color: #666;
-            font-size: 0.9em;
+            font-size: 14px;
             margin-top: 5px;
           }
-          .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+          .alternate-links {
+            margin-top: 5px;
+            font-size: 14px;
           }
-          .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #2c3e50;
+          .alternate-link {
+            color: #666;
             text-decoration: none;
+            margin-right: 10px;
           }
-          .language-group {
-            margin-top: 10px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 4px;
+          .alternate-link:hover {
+            color: #1a73e8;
           }
-          .language-group-title {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 8px;
-          }
-          @media (max-width: 768px) {
-            body {
-              padding: 10px;
-            }
-            .container {
-              padding: 15px;
-            }
-            .url-item, .sitemap-index-item {
-              padding: 10px;
-            }
-            .alternate-link {
-              display: block;
-              margin-bottom: 8px;
-            }
+          .language-tag {
+            color: #666;
+            font-size: 12px;
+            margin-right: 5px;
           }
         </style>
       </head>
       <body>
-        <div class="container">
-          <div class="header">
-            <a href="/" class="logo">Astrology</a>
-            <h1>站点地图</h1>
-          </div>
-          
-          <!-- 处理 sitemap-index.xml -->
-          <xsl:if test="sitemap:sitemapindex">
-            <div class="sitemap-index">
-              <h2>站点地图索引</h2>
-              <ul class="url-list">
-                <xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">
-                  <li class="sitemap-index-item">
-                    <a class="loc" href="{sitemap:loc}">
-                      <xsl:value-of select="sitemap:loc"/>
-                    </a>
-                    <div class="lastmod">
-                      最后更新: <xsl:value-of select="sitemap:lastmod"/>
-                    </div>
-                  </li>
-                </xsl:for-each>
-              </ul>
-            </div>
-          </xsl:if>
+        <h1>站点地图</h1>
+        
+        <!-- 处理 sitemap-index.xml -->
+        <xsl:if test="sitemap:sitemapindex">
+          <ul class="url-list">
+            <xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">
+              <li class="url-item">
+                <a class="loc" href="{sitemap:loc}">
+                  <xsl:value-of select="sitemap:loc"/>
+                </a>
+                <div class="lastmod">
+                  最后更新: <xsl:value-of select="sitemap:lastmod"/>
+                </div>
+              </li>
+            </xsl:for-each>
+          </ul>
+        </xsl:if>
 
-          <!-- 处理 sitemap-0.xml -->
-          <xsl:if test="sitemap:urlset">
-            <div class="url-list">
-              <xsl:for-each select="sitemap:urlset/sitemap:url">
-                <li class="url-item">
-                  <a class="loc" href="{sitemap:loc}">
-                    <xsl:value-of select="sitemap:loc"/>
-                  </a>
-                  <div class="lastmod">
-                    最后更新: <xsl:value-of select="sitemap:lastmod"/>
-                  </div>
-                  <div class="alternate-links">
-                    <div class="language-group">
-                      <div class="language-group-title">多语言版本：</div>
-                      <xsl:for-each select="xhtml:link">
-                        <a class="alternate-link" href="{@href}">
-                          <span class="language-tag">
-                            <xsl:value-of select="@hreflang"/>
-                          </span>
-                          <xsl:value-of select="@href"/>
-                        </a>
-                      </xsl:for-each>
-                    </div>
-                  </div>
-                </li>
-              </xsl:for-each>
-            </div>
-          </xsl:if>
-        </div>
+        <!-- 处理 sitemap-0.xml 等 -->
+        <xsl:if test="sitemap:urlset">
+          <ul class="url-list">
+            <xsl:for-each select="sitemap:urlset/sitemap:url">
+              <li class="url-item">
+                <a class="loc" href="{sitemap:loc}">
+                  <xsl:value-of select="sitemap:loc"/>
+                </a>
+                <div class="lastmod">
+                  最后更新: <xsl:value-of select="sitemap:lastmod"/>
+                </div>
+                <div class="alternate-links">
+                  <xsl:for-each select="xhtml:link">
+                    <a class="alternate-link" href="{@href}">
+                      <span class="language-tag">
+                        <xsl:value-of select="@hreflang"/>
+                      </span>
+                      <xsl:value-of select="@href"/>
+                    </a>
+                  </xsl:for-each>
+                </div>
+              </li>
+            </xsl:for-each>
+          </ul>
+        </xsl:if>
       </body>
     </html>
   </xsl:template>
