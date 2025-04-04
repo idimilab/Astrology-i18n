@@ -69,23 +69,7 @@
       <body>
         <h1>站点地图</h1>
         
-        <!-- 处理 sitemap-index.xml -->
-        <xsl:if test="sitemap:sitemapindex">
-          <ul class="url-list">
-            <xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">
-              <li class="url-item">
-                <a class="loc" href="{sitemap:loc}">
-                  <xsl:value-of select="sitemap:loc"/>
-                </a>
-                <div class="lastmod">
-                  最后更新: <xsl:value-of select="sitemap:lastmod"/>
-                </div>
-              </li>
-            </xsl:for-each>
-          </ul>
-        </xsl:if>
-
-        <!-- 处理 sitemap-0.xml 等 -->
+        <!-- 只处理具体站点地图文件 -->
         <xsl:if test="sitemap:urlset">
           <ul class="url-list">
             <xsl:for-each select="sitemap:urlset/sitemap:url">
