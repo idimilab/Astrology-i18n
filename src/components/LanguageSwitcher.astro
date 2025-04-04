@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { getLanguageNames } from "@utils/localeUtils";
 
-const currentLocale = Astro.currentLocale ?? "zh";
+const currentLocale = Astro.currentLocale ?? "en";
 const currentPath = Astro.url.pathname;
 let localeUrls: Record<string, string> = {};
 
