@@ -48,7 +48,7 @@ function getAlternateLocaleUrl(targetLocale: string): string {
   return new URL("/" + pathParts.join("/"), Astro.site).toString();
 }
 
-const supportedLocales: string[] = ["zh", "en", "ja", "ko", "pt", "de", "id", "fr", "es", "ru"];
+const supportedLocales: string[] = ["zh", "en"];
 
 const alternateUrls: Record<string, string> = supportedLocales.reduce(
   (acc: Record<string, string>, locale: string) => {
@@ -61,14 +61,6 @@ const alternateUrls: Record<string, string> = supportedLocales.reduce(
 const localeAlternateMap: Record<string, string> = {
   zh: "zh_CN",
   en: "en_US",
-  fr: "fr_FR",
-  es: "es_ES",
-  ru: "ru_RU",
-  ja: "ja_JP",
-  ko: "ko_KR",
-  pt: "pt_PT",
-  de: "de_DE",
-  id: "id_ID",
 };
 
 const localeAlternate: string[] = supportedLocales.map((locale: string) => localeAlternateMap[locale]);
