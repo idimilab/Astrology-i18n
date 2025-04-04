@@ -55,7 +55,7 @@ Share your project built with Astrology-i18n! Open an issue titled "Showcase Sub
 - [Preline UI](https://preline.co/).
 - [astro](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode).
 
-1. Fork or use this [template](https://github.com/astrologylab/Astrology-i18n)
+1. Fork or use this [template](https://github.com/idimilab/Astrology-i18n)
 
 2. Install dependencies:
 
