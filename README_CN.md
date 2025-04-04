@@ -15,8 +15,8 @@ Astrology-i18n 特别适合那些希望通过融合生动视觉效果和引人�
 ## 💯 Lighthouse 得分
 
 <p align="center">
-  <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fverse-i18n.vercel.app%2F">
-    <img width="510" alt="Astrology-i18n Lighthouse 得分" src="public/Astrology-i18n-lighthouse-score.svg">
+  <a href="https://pagespeed.web.dev/analysis/https-astrology-i18n-vercel-app/0wya1wi9hh?form_factor=mobile">
+    <img width="510" alt="Astrology-i18n Lighthouse 得分" src="public/astrology-i18n-lighthouse-score.svg">
   <a>
 </p>
 
