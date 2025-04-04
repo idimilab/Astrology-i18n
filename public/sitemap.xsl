@@ -2,6 +2,7 @@
 <xsl:stylesheet version="2.0"
                 xmlns:html="http://www.w3.org/TR/REC-html40"
                 xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:xhtml="http://www.w3.org/1999/xhtml"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
   
@@ -64,6 +65,18 @@
           .alternate {
             background-color: #f8f9fa;
           }
+          .language-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+          }
+          .language-link {
+            background-color: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+          }
         </style>
       </head>
       <body>
@@ -100,6 +113,7 @@
               <xsl:otherwise>
                 <tr>
                   <th>URL</th>
+                  <th>Alternate Languages</th>
                   <th>Last Modified</th>
                   <th>Change Frequency</th>
                   <th>Priority</th>
@@ -116,6 +130,19 @@
                       <a href="{$itemURL}">
                         <xsl:value-of select="sitemap:loc"/>
                       </a>
+                    </td>
+                    <td>
+                      <div class="language-links">
+                        <xsl:for-each select="xhtml:link">
+                          <span class="language-link">
+                            <xsl:value-of select="@hreflang"/>
+                            <xsl:text>: </xsl:text>
+                            <a href="{@href}">
+                              <xsl:value-of select="@href"/>
+                            </a>
+                          </span>
+                        </xsl:for-each>
+                      </div>
                     </td>
                     <td>
                       <xsl:value-of select="sitemap:lastmod"/>
