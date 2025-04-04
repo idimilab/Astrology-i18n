@@ -1,12 +1,14 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import { remarkModifiedTime } from "./src/utils/remark-modified-time.mjs";
-import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import rehypeExternalLinks from "rehype-external-links";
 import partytown from "@astrojs/partytown";
+
+
+import sitemap from "@astrojs/sitemap";
 
 
 export default defineConfig({
@@ -46,30 +48,18 @@ export default defineConfig({
       ],
     ],
   },
-  integrations: [sitemap({
-    i18n: {
-      defaultLocale: 'en',
-      locales: {
-        en: 'en-US',
-        zh: 'zh-CN',
-      },
+  integrations: [mdx(), pagefind(), icon({
+    include: {
+      tabler: ["*"],
+      mdi: ["*"],
+      "emojione-monotone": ["*"],
+      "material-symbols": ["*"],
+      flagpack: ["*"],
+      "flat-color-icons": ["*"],
     },
-  }), 
-    mdx(), 
-    pagefind(), 
-    icon({
-      include: {
-        tabler: ["*"],
-        mdi: ["*"],
-        "emojione-monotone": ["*"],
-        "material-symbols": ["*"],
-        flagpack: ["*"],
-        "flat-color-icons": ["*"],
-      },
-    }), 
-  partytown({
+  }), partytown({
     config: {
       forward: ["dataLayer.push"],
     },
-  })],
+  }), sitemap()],
 });
