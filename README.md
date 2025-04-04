@@ -90,7 +90,7 @@ All commands are run from the root of the project, from a terminal:
 
 Click the button below to start deploying your project on Vercel:
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/astrologylab/Astrology-i18n)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/idimilab/Astrology-i18n)
 
 ## ✨ Join and Contribute
 
