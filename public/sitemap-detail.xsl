@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9">
+                xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
   
   <xsl:template match="/">
     <html>
       <head>
-        <title>站点地图索引 - Astrology</title>
+        <title>站点地图 - Astrology</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
@@ -23,12 +24,12 @@
             margin: 0 0 20px 0;
             font-size: 24px;
           }
-          .sitemap-list {
+          .url-list {
             list-style: none;
             padding: 0;
             margin: 0;
           }
-          .sitemap-item {
+          .url-item {
             margin-bottom: 10px;
             padding: 10px;
             border-bottom: 1px solid #eee;
@@ -46,21 +47,48 @@
             font-size: 14px;
             margin-top: 5px;
           }
+          .alternate-links {
+            margin-top: 5px;
+            font-size: 14px;
+          }
+          .alternate-link {
+            color: #666;
+            text-decoration: none;
+            margin-right: 10px;
+          }
+          .alternate-link:hover {
+            color: #1a73e8;
+          }
+          .language-tag {
+            color: #666;
+            font-size: 12px;
+            margin-right: 5px;
+          }
         </style>
       </head>
       <body>
-        <h1>站点地图索引</h1>
+        <h1>站点地图</h1>
         
-        <!-- 处理 sitemap-index.xml -->
-        <xsl:if test="//sitemapindex">
-          <ul class="sitemap-list">
-            <xsl:for-each select="//sitemapindex/sitemap">
-              <li class="sitemap-item">
+        <!-- 处理具体站点地图文件 -->
+        <xsl:if test="//urlset">
+          <ul class="url-list">
+            <xsl:for-each select="//urlset/url">
+              <li class="url-item">
                 <a class="loc" href="{loc}">
                   <xsl:value-of select="loc"/>
                 </a>
                 <div class="lastmod">
                   最后更新: <xsl:value-of select="lastmod"/>
+                </div>
+                <div class="alternate-links">
+                  <xsl:for-each select="xhtml:link">
+                    <a class="alternate-link" href="{@href}">
+                      <span class="language-tag">
+                        <xsl:value-of select="@hreflang"/>
+                      </span>
+                      <xsl:value-of select="@href"/>
+                    </a>
+                  </xsl:for-each>
                 </div>
               </li>
             </xsl:for-each>

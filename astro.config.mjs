@@ -6,10 +6,7 @@ import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import rehypeExternalLinks from "rehype-external-links";
 import partytown from "@astrojs/partytown";
-
-
 import sitemap from "@astrojs/sitemap";
-
 
 export default defineConfig({
   site: "https://astrology-i18n.vercel.app",
@@ -63,22 +60,20 @@ export default defineConfig({
     },
   }), 
   sitemap({
+    filter: (page) => !page.includes('404'),
     i18n: {
       defaultLocale: 'en',
       locales: {
         en: 'en-US',
         zh: 'zh-CN',
-        fr: 'fr-CA',
-        es: 'es-ES',
-        ru: 'ru-RU',
-        ja: 'ja-JP',
-        ko: 'ko-KR',
-        pt: 'pt-BR',
-        de: 'de-DE',
-        id: 'id-ID',
       },
     },
-    xslURL: '/sitemap.xsl'
+    customPages: [
+      'https://astrology.one/',
+      'https://astrology.one/zh/',
+    ],
+    xslUrl: '/sitemap.xsl',
+    xslUrlForSitemaps: '/sitemap-detail.xsl',
   }),
 ],
 });
