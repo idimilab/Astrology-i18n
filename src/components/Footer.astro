@@ -15,14 +15,14 @@ const constants = getConstants(currentLocale);
 const privacyName = getPrivacyPolicyName(currentLocale);
 
 switch (currentLocale) {
-  case "zh":
-    navData = await import("@utils/zh/footernav");
-    break;
   case "en":
     navData = await import("@utils/en/footernav");
     break;
-  default:
+  case "zh":
     navData = await import("@utils/zh/footernav");
+    break;
+  default:
+    navData = await import("@utils/en/footernav");
     break;
 }
 

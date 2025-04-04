@@ -17,7 +17,7 @@ export function getCurrentLocale(pathname: string): SupportedLocale {
     "zh",
     "en",
   ];
-  return supportedLocales.includes(locale) ? locale : "zh";
+  return supportedLocales.includes(locale) ? locale : "en";
 }
 
 export function getBrandName(lang: SupportedLocale): string {

@@ -11,14 +11,14 @@ const brandName = getBrandName(currentLocale);
 let navData;
 
 switch (currentLocale) {
-  case "zh":
-    navData = await import("@utils/zh/headernav");
-    break;
   case "en":
     navData = await import("@utils/en/headernav");
     break;
-  default:
+  case "zh":
     navData = await import("@utils/zh/headernav");
+    break;
+  default:
+    navData = await import("@utils/en/headernav");
     break;
 }
 
