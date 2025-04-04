@@ -162,9 +162,15 @@
                 <tr>
                   <th>URL</th>
                   <th>Alternate Languages</th>
-                  <th>Last Modified</th>
-                  <th>Change Frequency</th>
-                  <th>Priority</th>
+                  <xsl:if test="sitemap:urlset/sitemap:url/sitemap:lastmod">
+                    <th>Last Modified</th>
+                  </xsl:if>
+                  <xsl:if test="sitemap:urlset/sitemap:url/sitemap:changefreq">
+                    <th>Change Frequency</th>
+                  </xsl:if>
+                  <xsl:if test="sitemap:urlset/sitemap:url/sitemap:priority">
+                    <th>Priority</th>
+                  </xsl:if>
                 </tr>
                 <xsl:for-each select="sitemap:urlset/sitemap:url">
                   <tr>
@@ -192,15 +198,21 @@
                         </xsl:for-each>
                       </div>
                     </td>
-                    <td>
-                      <xsl:value-of select="sitemap:lastmod"/>
-                    </td>
-                    <td>
-                      <xsl:value-of select="sitemap:changefreq"/>
-                    </td>
-                    <td>
-                      <xsl:value-of select="sitemap:priority"/>
-                    </td>
+                    <xsl:if test="sitemap:lastmod">
+                      <td>
+                        <xsl:value-of select="sitemap:lastmod"/>
+                      </td>
+                    </xsl:if>
+                    <xsl:if test="sitemap:changefreq">
+                      <td>
+                        <xsl:value-of select="sitemap:changefreq"/>
+                      </td>
+                    </xsl:if>
+                    <xsl:if test="sitemap:priority">
+                      <td>
+                        <xsl:value-of select="sitemap:priority"/>
+                      </td>
+                    </xsl:if>
                   </tr>
                 </xsl:for-each>
               </xsl:otherwise>
