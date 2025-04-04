@@ -78,6 +78,7 @@ export default defineConfig({
         id: 'id-ID',
       },
     },
+    xslURL: '/sitemap.xsl'
   }),
 ],
 });
