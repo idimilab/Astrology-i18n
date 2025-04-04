@@ -68,5 +68,27 @@ export default defineConfig({
         zh: 'zh-CN',
       },
     },
+    customPages: [
+      {
+        url: '/',
+        changefreq: 'daily',
+        priority: 1.0,
+      },
+      {
+        url: '/zh/',
+        changefreq: 'daily',
+        priority: 1.0,
+      },
+    ],
+    entryFilter: (entry) => {
+      // 为所有页面添加默认值
+      if (!entry.changefreq) {
+        entry.changefreq = 'weekly';
+      }
+      if (!entry.priority) {
+        entry.priority = 0.7;
+      }
+      return true;
+    },
   })],
 });
