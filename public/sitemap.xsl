@@ -137,7 +137,9 @@
               <xsl:when test="sitemap:sitemapindex">
                 <tr>
                   <th>URL</th>
-                  <th>Last Modified</th>
+                  <xsl:if test="sitemap:sitemapindex/sitemap:sitemap/sitemap:lastmod">
+                    <th>Last Modified</th>
+                  </xsl:if>
                 </tr>
                 <xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">
                   <tr>
@@ -152,9 +154,11 @@
                         <xsl:value-of select="sitemap:loc"/>
                       </a>
                     </td>
-                    <td>
-                      <xsl:value-of select="sitemap:lastmod"/>
-                    </td>
+                    <xsl:if test="sitemap:lastmod">
+                      <td>
+                        <xsl:value-of select="sitemap:lastmod"/>
+                      </td>
+                    </xsl:if>
                   </tr>
                 </xsl:for-each>
               </xsl:when>
