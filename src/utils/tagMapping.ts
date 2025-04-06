@@ -1,15 +1,15 @@
 type TagMap = Record<string, string>;
 
 const zhTags: TagMap = {
-  甲戌: "reflect",
-  乙未: "media",
-  乙丑: "roam",
-  丙子: "risk",
-  丙寅: "strategy",
-  甲戌: "allocation",
-  乙丑: "innovation",
-  丙子: "model",
-  乙丑: "management",
+  沉思: "reflect",
+  观阅: "media",
+  行走: "roam",
+  风险: "risk",
+  策略: "strategy",
+  配置: "allocation",
+  创新: "innovation",
+  模式: "model",
+  管理: "management",
 };
 
 const enTags: TagMap = {
