@@ -19,5 +19,5 @@ export const build = [
 export const more = [
   { text: "关于", href: "/" },
   { text: "友链", href: "/" },
-  { text: "导航", href: "/"},
+  { text: "导航", href: "/" },
 ];

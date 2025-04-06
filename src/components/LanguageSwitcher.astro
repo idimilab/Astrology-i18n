@@ -6,10 +6,7 @@ const currentLocale = Astro.currentLocale ?? "en";
 const currentPath = Astro.url.pathname;
 let localeUrls: Record<string, string> = {};
 
-const supportedLanguages = [
-  "zh",
-  "en",
-];
+const supportedLanguages = ["zh", "en"];
 
 function replaceLocaleInPath(path: string, newLocale: string): string {
   const parts = path.split("/").filter(Boolean);
@@ -31,6 +28,7 @@ localeUrls[currentLocale] = currentPath;
 
 const languageNames = getLanguageNames();
 ---
+
 <div class="hs-dropdown relative inline-flex [--placement:top-left]">
   <button
     id="footer-language-dropdown"
@@ -47,16 +45,18 @@ const languageNames = getLanguageNames();
     class="hs-dropdown-menu duration z-10 hidden w-40 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:divide-neutral-700 dark:border dark:border-neutral-700 dark:bg-neutral-800"
     aria-labelledby="footer-language-dropdown"
   >
-    {supportedLanguages.map(
-      (locale) =>
-        locale !== currentLocale && (
-          <a
-            class="flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:text-neutral-800 focus:outline-none focus:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
-            href={localeUrls[locale]}
-          >
-            {languageNames[locale]}
-          </a>
-        ),
-    )}
+    {
+      supportedLanguages.map(
+        (locale) =>
+          locale !== currentLocale && (
+            <a
+              class="flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:text-neutral-800 focus:outline-none focus:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
+              href={localeUrls[locale]}
+            >
+              {languageNames[locale]}
+            </a>
+          ),
+      )
+    }
   </div>
 </div>

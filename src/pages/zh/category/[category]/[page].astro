@@ -7,7 +7,10 @@ import PostCard from "@components/CommonCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { getCategoryMetadata } from "@consts";
 import CategorySchema from "@seo/CategorySchema.astro";
-import { getEnglishCategory, getCategoryByLanguage } from "@utils/categoryMapping";
+import {
+  getEnglishCategory,
+  getCategoryByLanguage,
+} from "@utils/categoryMapping";
 
 export const getStaticPaths = (async () => {
   const allPosts = await getCollection("posts", ({ id }) =>
@@ -67,8 +70,15 @@ if (typeof category !== "string") {
 
 const decodedCategory = decodeURI(category);
 const currentLocale = "zh";
-const localizedCategory = getCategoryByLanguage(decodedCategory, "en", currentLocale);
-const { title, description } = getCategoryMetadata(localizedCategory, currentLocale);
+const localizedCategory = getCategoryByLanguage(
+  decodedCategory,
+  "en",
+  currentLocale,
+);
+const { title, description } = getCategoryMetadata(
+  localizedCategory,
+  currentLocale,
+);
 ---
 
 <BaseLayout title={title} description={description}>
@@ -84,16 +94,12 @@ const { title, description } = getCategoryMetadata(localizedCategory, currentLoc
     <Pagination
       currentPage={page.currentPage}
       lastPage={page.lastPage}
-      urlPrev={
-        page.currentPage > 1
-          ? `/zh/category/${localizedCategory}/${page.currentPage - 1}`
-          : null
-      }
-      urlNext={
-        page.currentPage < page.lastPage
-          ? `/zh/category/${localizedCategory}/${page.currentPage + 1}`
-          : null
-      }
+      urlPrev={page.currentPage > 1
+        ? `/zh/category/${localizedCategory}/${page.currentPage - 1}`
+        : null}
+      urlNext={page.currentPage < page.lastPage
+        ? `/zh/category/${localizedCategory}/${page.currentPage + 1}`
+        : null}
       basePath={`/zh/category/${localizedCategory}`}
       maxDisplayedPages={5}
     />

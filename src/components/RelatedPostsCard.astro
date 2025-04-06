@@ -51,30 +51,32 @@ const safeGetRelativeLocaleUrl = (path: string) =>
 ---
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-  {relatedPosts.map((post) => {
-    const cleanSlug = post.id.replace(/^[a-z]{2}\//, "");
-    return (
-      <div class="overflow-hidden rounded-xl bg-white transition-transform duration-500 hover:-translate-y-1 hover:scale-105 dark:bg-neutral-900">
-        <a
-          href={safeGetRelativeLocaleUrl(`posts/${cleanSlug}`)}
-          class="block relative h-full"
-        >
-          <OptimizedCover src={post.data.cover} alt={post.data.coverAlt} />
-          <div class="absolute bottom-0 end-0 start-0 bg-linear-to-t from-black to-transparent p-4 md:p-5">
-            <div class="mt-16 flex items-center gap-4 text-xs text-white">
-              <div class="flex flex-wrap gap-2">
-                {post.data.tags.map((tag) => (
-                  <span>{tag}</span>
-                ))}
+  {
+    relatedPosts.map((post) => {
+      const cleanSlug = post.id.replace(/^[a-z]{2}\//, "");
+      return (
+        <div class="overflow-hidden rounded-xl bg-white transition-transform duration-500 hover:-translate-y-1 hover:scale-105 dark:bg-neutral-900">
+          <a
+            href={safeGetRelativeLocaleUrl(`posts/${cleanSlug}`)}
+            class="block relative h-full"
+          >
+            <OptimizedCover src={post.data.cover} alt={post.data.coverAlt} />
+            <div class="absolute bottom-0 end-0 start-0 bg-linear-to-t from-black to-transparent p-4 md:p-5">
+              <div class="mt-16 flex items-center gap-4 text-xs text-white">
+                <div class="flex flex-wrap gap-2">
+                  {post.data.tags.map((tag) => (
+                    <span>{tag}</span>
+                  ))}
+                </div>
+                <FormattedDate date={post.data.pubDate} />
               </div>
-              <FormattedDate date={post.data.pubDate} />
+              <h2 class="mt-2 text-lg font-bold text-white">
+                {post.data.title}
+              </h2>
             </div>
-            <h2 class="mt-2 text-lg font-bold text-white">
-              {post.data.title}
-            </h2>
-          </div>
-        </a>
-      </div>
-    );
-  })}
+          </a>
+        </div>
+      );
+    })
+  }
 </div>

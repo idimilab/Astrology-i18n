@@ -5,7 +5,7 @@ import Footer from "@components/Footer.astro";
 import { getCurrentLocale } from "@utils/localeUtils";
 import GTMHead from "@analytics/GTMHead.astro";
 import GTMBody from "@analytics/GTMBody.astro";
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 const { title, description, image } = Astro.props;
@@ -19,7 +19,9 @@ const lang = getCurrentLocale(Astro.url.pathname);
     <ClientRouter />
     <BaseHead title={title} description={description} image={image} />
   </head>
-  <body class="mx-auto flex min-h-screen max-w-6xl flex-col px-4 dark:prose-invert dark:bg-neutral-900 sm:px-6 lg:px-8">
+  <body
+    class="mx-auto flex min-h-screen max-w-6xl flex-col px-4 dark:prose-invert dark:bg-neutral-900 sm:px-6 lg:px-8"
+  >
     <GTMBody />
 
     <Header />
@@ -30,13 +32,11 @@ const lang = getCurrentLocale(Astro.url.pathname);
 
     <Footer />
 
-
     <script>
-			document.addEventListener('astro:page-load', async () => {
-				const preline = await import('preline/dist/preline.js')
-				preline.HSStaticMethods.autoInit()
-			})
-	  </script>
-
+      document.addEventListener("astro:page-load", async () => {
+        const preline = await import("preline/dist/preline.js");
+        preline.HSStaticMethods.autoInit();
+      });
+    </script>
   </body>
 </html>

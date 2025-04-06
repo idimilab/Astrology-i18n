@@ -1,6 +1,4 @@
-export type SupportedLocale =
-  | "en"
-  | "zh"
+export type SupportedLocale = "en" | "zh";
 
 export interface LanguageConstants {
   BrandName: string;
@@ -71,14 +69,12 @@ const enConstants: LanguageConstants = {
   FOOTER_LIFE: "Life",
 };
 
-
-
 export function getConstants(lang: SupportedLocale): LanguageConstants {
   switch (lang) {
     case "en":
       return enConstants;
     case "zh":
-        return zhConstants;
+      return zhConstants;
     default:
       return enConstants;
   }

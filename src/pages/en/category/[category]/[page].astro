@@ -61,8 +61,15 @@ if (typeof category !== "string") {
 
 const decodedCategory = decodeURI(category);
 const currentLocale = "en";
-const localizedCategory = getCategoryByLanguage(decodedCategory, "en", currentLocale);
-const { title, description } = getCategoryMetadata(localizedCategory, currentLocale);
+const localizedCategory = getCategoryByLanguage(
+  decodedCategory,
+  "en",
+  currentLocale,
+);
+const { title, description } = getCategoryMetadata(
+  localizedCategory,
+  currentLocale,
+);
 ---
 
 <BaseLayout title={title} description={description}>

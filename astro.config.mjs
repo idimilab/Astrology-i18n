@@ -17,10 +17,7 @@ export default defineConfig({
   },
   i18n: {
     defaultLocale: "en",
-    locales: [
-      "zh",
-      "en",
-    ],
+    locales: ["zh", "en"],
     routing: {
       prefixDefaultLocale: true,
       redirectToDefaultLocale: false,
@@ -45,28 +42,33 @@ export default defineConfig({
       ],
     ],
   },
-  integrations: [mdx(), pagefind(), icon({
-    include: {
-      tabler: ["*"],
-      mdi: ["*"],
-      "emojione-monotone": ["*"],
-      "material-symbols": ["*"],
-      flagpack: ["*"],
-      "flat-color-icons": ["*"],
-    },
-  }), partytown({
-    config: {
-      forward: ["dataLayer.push"],
-    },
-  }), 
-  sitemap({
-    xslURL: '/sitemap.xsl',
-    i18n: {
-      defaultLocale: 'en',
-      locales: {
-        en: 'en-US',
-        zh: 'zh-CN',
+  integrations: [
+    mdx(),
+    pagefind(),
+    icon({
+      include: {
+        tabler: ["*"],
+        mdi: ["*"],
+        "emojione-monotone": ["*"],
+        "material-symbols": ["*"],
+        flagpack: ["*"],
+        "flat-color-icons": ["*"],
       },
-    },
-  })],
+    }),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+    sitemap({
+      xslURL: "/sitemap.xsl",
+      i18n: {
+        defaultLocale: "en",
+        locales: {
+          en: "en-US",
+          zh: "zh-CN",
+        },
+      },
+    }),
+  ],
 });

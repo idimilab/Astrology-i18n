@@ -2,10 +2,14 @@
 import { Icon } from "astro-icon/components";
 import FooterLinks from "@components/FooterLinks.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { getCurrentLocale, getBrandName, getPrivacyPolicyName, getPrivacyPolicyPath } from "@utils/localeUtils";
+import {
+  getCurrentLocale,
+  getBrandName,
+  getPrivacyPolicyName,
+  getPrivacyPolicyPath,
+} from "@utils/localeUtils";
 import { getConstants, type SupportedLocale } from "@consts";
 import LanguageSwitcher from "@components/LanguageSwitcher.astro";
-
 
 let navData;
 
@@ -30,24 +34,32 @@ const { life, invest, build, more } = navData;
 
 const today = new Date();
 
-
 const safeGetRelativeLocaleUrl = (path: string) => {
   let url = getRelativeLocaleUrl(currentLocale, path);
   return path.endsWith(".xml") ? url.replace(/\/$/, "") : url;
 };
 
-const privacyLink = safeGetRelativeLocaleUrl(getPrivacyPolicyPath(currentLocale));
+const privacyLink = safeGetRelativeLocaleUrl(
+  getPrivacyPolicyPath(currentLocale),
+);
 const rssLink = safeGetRelativeLocaleUrl("rss.xml");
-
 ---
 
 <footer class="mt-auto w-full max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8">
-  <div class="mb-10 grid grid-cols-2 gap-6 border-t border-neutral-200 pt-5 dark:border-neutral-700 md:grid-cols-4 lg:grid-cols-5">
+  <div
+    class="mb-10 grid grid-cols-2 gap-6 border-t border-neutral-200 pt-5 dark:border-neutral-700 md:grid-cols-4 lg:grid-cols-5"
+  >
     <div class="col-span-full hidden lg:col-span-1 lg:block">
-      <a class="flex-none text-xl font-semibold dark:text-white" href="#" aria-label="Brand">{brandName}</a>
+      <a
+        class="flex-none text-xl font-semibold dark:text-white"
+        href="#"
+        aria-label="Brand">{brandName}</a
+      >
     </div>
     <div>
-      <h3 class="text-medium font-semibold uppercase text-neutral-900 dark:text-neutral-100">
+      <h3
+        class="text-medium font-semibold uppercase text-neutral-900 dark:text-neutral-100"
+      >
         {constants.FOOTER_LIFE}
       </h3>
       <div class="mt-3 grid space-y-3 text-sm">
@@ -62,7 +74,9 @@ const rssLink = safeGetRelativeLocaleUrl("rss.xml");
     </div>
 
     <div>
-      <h3 class="text-medium font-semibold uppercase text-neutral-900 dark:text-neutral-100">
+      <h3
+        class="text-medium font-semibold uppercase text-neutral-900 dark:text-neutral-100"
+      >
         {constants.FOOTER_INVEST}
       </h3>
       <div class="mt-3 grid space-y-3 text-sm">
@@ -77,7 +91,9 @@ const rssLink = safeGetRelativeLocaleUrl("rss.xml");
     </div>
 
     <div>
-      <h3 class="text-medium font-semibold uppercase text-neutral-900 dark:text-neutral-100">
+      <h3
+        class="text-medium font-semibold uppercase text-neutral-900 dark:text-neutral-100"
+      >
         {constants.FOOTER_BUILD}
       </h3>
       <div class="mt-3 grid space-y-3 text-sm">
@@ -92,7 +108,9 @@ const rssLink = safeGetRelativeLocaleUrl("rss.xml");
     </div>
 
     <div>
-      <h3 class="text-medium font-semibold uppercase text-neutral-900 dark:text-neutral-100">
+      <h3
+        class="text-medium font-semibold uppercase text-neutral-900 dark:text-neutral-100"
+      >
         {constants.FOOTER_ABOUT}
       </h3>
       <div class="mt-3 grid space-y-3 text-sm">
@@ -109,24 +127,47 @@ const rssLink = safeGetRelativeLocaleUrl("rss.xml");
 
   <div class="mt-5 border-t border-neutral-200 pt-5 dark:border-neutral-700">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-      <div class="flex flex-wrap w-full items-center justify-between space-y-3 sm:space-y-0">
-        <div class="flex items-center space-x-4 text-sm text-center sm:text-left">
-          <a class="text-neutral-600 dark:text-neutral-400" href={safeGetRelativeLocaleUrl("/")} aria-label="Astrology">
+      <div
+        class="flex flex-wrap w-full items-center justify-between space-y-3 sm:space-y-0"
+      >
+        <div
+          class="flex items-center space-x-4 text-sm text-center sm:text-left"
+        >
+          <a
+            class="text-neutral-600 dark:text-neutral-400"
+            href={safeGetRelativeLocaleUrl("/")}
+            aria-label="Astrology"
+          >
             {brandName} &copy; {today.getFullYear()}
           </a>
-          <a class="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200" href={privacyLink}>
-              {privacyName}
+          <a
+            class="inline-flex gap-x-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
+            href={privacyLink}
+          >
+            {privacyName}
           </a>
         </div>
 
         <div class="flex items-center justify-center space-x-4 text-sm">
-          <a class="inline-block text-neutral-500 hover:text-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-200" href="https://x.com/Astrologylab" aria-label="X">
+          <a
+            class="inline-block text-neutral-500 hover:text-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-200"
+            href="https://x.com/Astrologylab"
+            aria-label="X"
+          >
             <Icon name="tabler:brand-x" class="h-auto w-5" />
           </a>
-          <a class="inline-block text-neutral-500 hover:text-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-200" href="https://github.com/Astrologylab" aria-label="Github">
+          <a
+            class="inline-block text-neutral-500 hover:text-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-200"
+            href="https://github.com/Astrologylab"
+            aria-label="Github"
+          >
             <Icon name="tabler:brand-github" class="h-auto w-5" />
           </a>
-          <a class="inline-block text-neutral-500 hover:text-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-200" href={rssLink} aria-label="RSS">
+          <a
+            class="inline-block text-neutral-500 hover:text-neutral-800 dark:text-neutral-500 dark:hover:text-neutral-200"
+            href={rssLink}
+            aria-label="RSS"
+          >
             <Icon name="tabler:rss" class="h-auto w-5" />
           </a>
           <LanguageSwitcher />

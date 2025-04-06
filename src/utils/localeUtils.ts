@@ -1,9 +1,6 @@
 import type { SupportedLocale } from "@consts";
 
-export const supportedLanguages = [
-  "zh",
-  "en",
-];
+export const supportedLanguages = ["zh", "en"];
 
 export const languageNames: Record<string, string> = {
   en: "English",
@@ -13,10 +10,7 @@ export const languageNames: Record<string, string> = {
 export function getCurrentLocale(pathname: string): SupportedLocale {
   const segments = pathname.split("/").filter(Boolean);
   const locale = segments[0] as SupportedLocale;
-  const supportedLocales: SupportedLocale[] = [
-    "zh",
-    "en",
-  ];
+  const supportedLocales: SupportedLocale[] = ["zh", "en"];
   return supportedLocales.includes(locale) ? locale : "en";
 }
 
@@ -28,13 +22,10 @@ export function getBrandName(lang: SupportedLocale): string {
   return brandNames[lang];
 }
 
-
-
 export const privacyPolicyNames: Record<SupportedLocale, string> = {
   en: "Privacy",
   zh: "隐私政策",
 };
-
 
 export const privacyPolicyPaths: Record<SupportedLocale, string> = {
   en: "/posts/privacy-policy",
@@ -52,7 +43,6 @@ export function getLanguageNames(): Record<string, string> {
 export function getPrivacyPolicyName(lang: SupportedLocale): string {
   return privacyPolicyNames[lang] ?? privacyPolicyNames.en;
 }
-
 
 export function getPrivacyPolicyPath(lang: SupportedLocale): string {
   return privacyPolicyPaths[lang] ?? privacyPolicyPaths.en;

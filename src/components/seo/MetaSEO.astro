@@ -63,6 +63,7 @@ const {
 const ogImage = openGraph?.basic?.image || defaultImage;
 const twitterImage = twitter?.image || defaultImage;
 ---
+
 <SEO
   title={title}
   description={description}
@@ -74,7 +75,7 @@ const twitterImage = twitter?.image || defaultImage;
   openGraph={{
     basic: {
       title: openGraph?.basic?.title ?? title,
-      type: openGraph?.basic?.type ?? 'website',
+      type: openGraph?.basic?.type ?? "website",
       image: ogImage,
       url: openGraph?.basic?.url ?? canonical,
     },

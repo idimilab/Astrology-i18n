@@ -72,6 +72,7 @@ const currentLocale = "zh";
 const localizedTag = getTagByLanguage(decodedTag, "en", currentLocale);
 const { title, description } = getTagMetadata(localizedTag, currentLocale);
 ---
+
 <BaseLayout title={title} description={description}>
   <head>
     <TagsSchema
@@ -97,16 +98,12 @@ const { title, description } = getTagMetadata(localizedTag, currentLocale);
     <Pagination
       currentPage={page.currentPage}
       lastPage={page.lastPage}
-      urlPrev={
-        page.currentPage > 1
-          ? `/zh/tags/${localizedTag}/${page.currentPage - 1}`
-          : null
-      }
-      urlNext={
-        page.currentPage < page.lastPage
-          ? `/zh/tags/${localizedTag}/${page.currentPage + 1}`
-          : null
-      }
+      urlPrev={page.currentPage > 1
+        ? `/zh/tags/${localizedTag}/${page.currentPage - 1}`
+        : null}
+      urlNext={page.currentPage < page.lastPage
+        ? `/zh/tags/${localizedTag}/${page.currentPage + 1}`
+        : null}
       basePath={`/zh/tags/${localizedTag}`}
       maxDisplayedPages={5}
     />

@@ -55,7 +55,7 @@ const alternateUrls: Record<string, string> = supportedLocales.reduce(
     acc[locale] = getAlternateLocaleUrl(locale);
     return acc;
   },
-  {}
+  {},
 );
 
 const localeAlternateMap: Record<string, string> = {
@@ -63,10 +63,16 @@ const localeAlternateMap: Record<string, string> = {
   en: "en_US",
 };
 
-const localeAlternate: string[] = supportedLocales.map((locale: string) => localeAlternateMap[locale]);
+const localeAlternate: string[] = supportedLocales.map(
+  (locale: string) => localeAlternateMap[locale],
+);
 
-const defaultImage = new URL("/astrology-background.avif", Astro.site).toString();
+const defaultImage = new URL(
+  "/astrology-background.avif",
+  Astro.site,
+).toString();
 ---
+
 <meta charset={charset} />
 
 <GlobalSchema />
@@ -124,12 +130,18 @@ const defaultImage = new URL("/astrology-background.avif", Astro.site).toString(
       { property: "og:url", content: canonicalURL },
       { property: "og:title", content: formattedTitle },
       { property: "og:description", content: description },
-      { property: "og:image", content: image ? new URL(image, Astro.site).href : defaultImage },
+      {
+        property: "og:image",
+        content: image ? new URL(image, Astro.site).href : defaultImage,
+      },
       { property: "twitter:card", content: "summary_large_image" },
       { property: "twitter:url", content: canonicalURL },
       { property: "twitter:title", content: formattedTitle },
       { property: "twitter:description", content: description },
-      { property: "twitter:image", content: image ? new URL(image, Astro.site).href : defaultImage },
+      {
+        property: "twitter:image",
+        content: image ? new URL(image, Astro.site).href : defaultImage,
+      },
     ],
   }}
   currentLocale={localeAlternateMap[currentLocale] || currentLocale}

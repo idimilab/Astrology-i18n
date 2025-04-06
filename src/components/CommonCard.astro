@@ -15,7 +15,7 @@ const currentLocale = getCurrentLocale(post.id);
 ---
 
 <div
-  class="relative overflow-hidden rounded-xl bg-white transition-transform duration-500 hover:-translate-y-1 hover:scale-105 dark:bg-neutral-900" 
+  class="relative overflow-hidden rounded-xl bg-white transition-transform duration-500 hover:-translate-y-1 hover:scale-105 dark:bg-neutral-900"
 >
   <a
     href={getRelativeLocaleUrl(
@@ -25,7 +25,9 @@ const currentLocale = getCurrentLocale(post.id);
     class="block"
   >
     <OptimizedCover src={post.data.cover} alt={post.data.coverAlt} />
-    <div class="absolute bottom-0 end-0 start-0 bg-linear-to-t from-black to-transparent p-5 md:p-6">
+    <div
+      class="absolute bottom-0 end-0 start-0 bg-linear-to-t from-black to-transparent p-5 md:p-6"
+    >
       <div class="mt-16 flex items-center gap-4 text-xs text-white">
         <span>{post.data.tags.join(" ")}</span>
         <FormattedDate date={post.data.pubDate} />
@@ -34,4 +36,3 @@ const currentLocale = getCurrentLocale(post.id);
     </div>
   </a>
 </div>
-

@@ -1,9 +1,8 @@
 ---
 import HeaderLinks from "@components/HeaderLinks.astro";
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCurrentLocale, getBrandName } from "@utils/localeUtils";
-
 
 const currentLocale = getCurrentLocale(Astro.url.pathname);
 const brandName = getBrandName(currentLocale);
@@ -33,15 +32,15 @@ const safeGetRelativeLocaleUrl = (path: string) =>
     class="relative mx-auto flex w-full max-w-7xl basis-full flex-wrap items-center px-4 lg:grid lg:grid-cols-12 lg:px-8"
     aria-label="Global"
   >
-  <div class="lg:col-span-3">
-    <a
-      class="inline-block flex-none rounded-xl text-xl font-semibold focus:opacity-80 focus:outline-none dark:text-white"
-      href={safeGetRelativeLocaleUrl("/")}
-      aria-label={`Go to homepage of ${brandName}`}
-    >
-     <Icon name="astrology-logo" class="h-10 w-auto" />
-    </a>
-  </div>
+    <div class="lg:col-span-3">
+      <a
+        class="inline-block flex-none rounded-xl text-xl font-semibold focus:opacity-80 focus:outline-none dark:text-white"
+        href={safeGetRelativeLocaleUrl("/")}
+        aria-label={`Go to homepage of ${brandName}`}
+      >
+        <Icon name="astrology-logo" class="h-10 w-auto" />
+      </a>
+    </div>
 
     <div
       class="ms-auto flex items-center gap-x-2 py-1 lg:order-3 lg:col-span-3 lg:ps-6"
