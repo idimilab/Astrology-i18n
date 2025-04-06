@@ -6,7 +6,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PostCard from "@components/CommonCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { getTagMetadata } from "@consts";
-import { getEnglishTag, getTagByLanguage, getChineseTag } from "@utils/tagMapping";
+import { getEnglishTag, getTagByLanguage } from "@utils/tagMapping";
 import TagsSchema from "@seo/TagsSchema.astro";
 
 type Post = CollectionEntry<"posts">;
