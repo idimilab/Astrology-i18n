@@ -7,7 +7,7 @@ import PostCard from "@components/CommonCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { getCategoryMetadata } from "@consts";
 import CategorySchema from "@seo/CategorySchema.astro";
-import { getEnglishCategory, getCategoryByLanguage } from "@utils/categoryMapping";
+import { getCategoryByLanguage } from "@utils/categoryMapping";
 
 export const getStaticPaths = (async () => {
   const allPosts = await getCollection("posts", ({ id }) =>
