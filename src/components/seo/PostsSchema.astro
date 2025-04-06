@@ -18,7 +18,7 @@ const constants = getConstants(locale);
 
 const siteUrl = Astro.site
   ? `${Astro.site.toString().replace(/\/?$/, "/")}`
-  : "https://idimi.com/";
+  : "https://astrology-i18n.vercel.app/";
 
 const pathParts = post.id.split("/").filter(Boolean);
 const slug = pathParts[pathParts.length - 1];
@@ -31,7 +31,7 @@ const postUrl = `${siteUrl}${locale}/posts/${slug}/`;
 const logoPath = "/favicon.ico";
 const logoUrl = new URL(logoPath, siteUrl).toString();
 
-const authorName = post.data.author || "iDiMi Author";
+const authorName = post.data.author || "Astrology Author";
 
 const imageUrl = post.data.cover
   ? new URL(post.data.cover, siteUrl).toString()
@@ -113,7 +113,7 @@ const breadcrumbs: Array<{
       name: authorName,
       image: {
         "@type": "ImageObject",
-        url: `${siteUrl}idimi.webp`,
+        url: `${siteUrl}astrology.avif`,
         width: {
           "@type": "QuantitativeValue",
           value: 400,
