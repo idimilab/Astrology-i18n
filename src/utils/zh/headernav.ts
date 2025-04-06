@@ -1,14 +1,14 @@
 export const life = {
-  text: "商周",
+  text: "生活",
   href: "/category/life/1/",
 };
 
 export const invest = {
-  text: "春秋",
+  text: "投资",
   href: "/category/invest/1/",
 };
 
 export const build = {
-  text: "唐宋",
+  text: "创业",
   href: "/category/build/1/",
 };
