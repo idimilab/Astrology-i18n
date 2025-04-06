@@ -20,7 +20,7 @@ export async function GET(context) {
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
-      link: `/en/posts/${post.slug.split("/").pop()}/`,
+      link: `/en/posts/${post.id.split("/").pop()}/`,
       pubDate: post.data.pubDate,
       customData: post.data.customData,
     })),

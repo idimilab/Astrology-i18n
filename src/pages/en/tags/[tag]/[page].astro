@@ -6,7 +6,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PostCard from "@components/CommonCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { getTagMetadata } from "@consts";
-import { getChineseTag } from "@utils/tagMapping";
+import { getEnglishTag, getTagByLanguage } from "@utils/tagMapping";
 import TagsSchema from "@seo/TagsSchema.astro";
 
 type Post = CollectionEntry<"posts">;
@@ -21,7 +21,11 @@ export const getStaticPaths = (async () => {
   const allPosts = await getCollection("posts", ({ id }) =>
     id.startsWith("en/"),
   );
-  const uniqueTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
+
+  const allCommonTags = allPosts.flatMap((post) =>
+    post.data.tags.map((tag) => getEnglishTag(tag, "en")),
+  );
+  const uniqueTags = [...new Set(allCommonTags)];
 
   return uniqueTags.flatMap((tag) => {
     const chineseTag = getChineseTag(tag, "en");
@@ -62,13 +66,27 @@ if (typeof tag !== "string") {
   throw new Error("Invalid tag parameter");
 }
 
+const decodedTag = decodeURI(tag);
 const currentLocale = "en";
-const { title, description } = getTagMetadata(tag, currentLocale);
+const localizedTag = getTagByLanguage(decodedTag, "en", currentLocale);
+const { title, description } = getTagMetadata(localizedTag, currentLocale);
 ---
 
 <BaseLayout title={title} description={description}>
-  <TagsSchema tag={tag} page={page} locale="en" />
-  <h1 class="sr-only">All articles under tag "{tag}"</h1>
+  <head>
+    <TagsSchema
+      tag={localizedTag}
+      page={{
+        currentPage: page.currentPage,
+        data: page.data.map((post) => ({
+          slug: post.id,
+          data: { title: post.data.title },
+        })),
+      }}
+      locale={currentLocale}
+    />
+  </head>
+  <h1 class="sr-only">All articles under tag "{localizedTag}"</h1>
   <h2 class="sr-only">Article list</h2>
   <div class="mx-auto max-w-4xl px-4 py-8">
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -79,12 +97,12 @@ const { title, description } = getTagMetadata(tag, currentLocale);
       currentPage={page.currentPage}
       lastPage={page.lastPage}
       urlPrev={page.currentPage > 1
-        ? `/en/tags/${tag}/${page.currentPage - 1}`
+        ? `/en/tags/${localizedTag}/${page.currentPage - 1}`
         : null}
       urlNext={page.currentPage < page.lastPage
-        ? `/en/tags/${tag}/${page.currentPage + 1}`
+        ? `/en/tags/${localizedTag}/${page.currentPage + 1}`
         : null}
-      basePath={`/en/tags/${tag}`}
+      basePath={`/en/tags/${localizedTag}`}
       maxDisplayedPages={5}
     />
   </div>

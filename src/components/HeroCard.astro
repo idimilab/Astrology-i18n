@@ -33,9 +33,9 @@ function truncateUTF8String(str: string, maxBytes: number) {
 
 const truncatedDescription = truncateUTF8String(post.data.description, 150);
 
-const cleanSlug = post.slug.replace(/^[a-z]{2}\//, "");
-
+const cleanSlug = post.id.replace(/^[a-z]{2}\//, "");
 const postUrl = getRelativeLocaleUrl(currentLocale, `posts/${cleanSlug}`);
+
 ---
 
 <div

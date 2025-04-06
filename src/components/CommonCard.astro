@@ -20,7 +20,7 @@ const currentLocale = getCurrentLocale(post.id);
   <a
     href={getRelativeLocaleUrl(
       currentLocale,
-      `posts/${post.slug.replace(/^[a-z]{2}\//, "")}`,
+      `posts/${post.id.replace(/^[a-z]{2}\//, "")}`,
     )}
     class="block"
   >

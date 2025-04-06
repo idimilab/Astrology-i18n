@@ -65,14 +65,15 @@ if (typeof category !== "string") {
   throw new Error("Invalid category parameter");
 }
 
+const decodedCategory = decodeURI(category);
 const currentLocale = "zh";
-const localizedCategory = getCategoryByLanguage(category, "en", currentLocale);
+const localizedCategory = getCategoryByLanguage(decodedCategory, "en", currentLocale);
 const { title, description } = getCategoryMetadata(localizedCategory, currentLocale);
 ---
 
 <BaseLayout title={title} description={description}>
   <CategorySchema category={localizedCategory} page={page} locale="zh" />
-  <h1 class="sr-only">分类 "{localizedCategory}" 下的所有文章</h1>
+  <h1 class="sr-only">分类「{localizedCategory}」下的所有文章</h1>
   <h2 class="sr-only">文章列表</h2>
 
   <div class="mx-auto max-w-4xl px-4 py-8">
@@ -85,15 +86,15 @@ const { title, description } = getCategoryMetadata(localizedCategory, currentLoc
       lastPage={page.lastPage}
       urlPrev={
         page.currentPage > 1
-          ? `/zh/category/${category}/${page.currentPage - 1}`
+          ? `/zh/category/${localizedCategory}/${page.currentPage - 1}`
           : null
       }
       urlNext={
         page.currentPage < page.lastPage
-          ? `/zh/category/${category}/${page.currentPage + 1}`
+          ? `/zh/category/${localizedCategory}/${page.currentPage + 1}`
           : null
       }
-      basePath={`/zh/category/${category}`}
+      basePath={`/zh/category/${localizedCategory}`}
       maxDisplayedPages={5}
     />
   </div>

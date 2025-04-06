@@ -26,7 +26,7 @@ const safeGetRelativeLocaleUrl = (path: string) =>
   <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
     {
       latestPosts.map((post) => {
-        const cleanSlug = post.slug.replace(/^[a-z]{2}\//, "");
+        const cleanSlug = post.id.replace(/^[a-z]{2}\//, "");
         return (
           <a
             href={safeGetRelativeLocaleUrl(`posts/${cleanSlug}`)}

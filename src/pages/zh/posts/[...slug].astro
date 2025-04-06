@@ -3,7 +3,7 @@ import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import type { SupportedLocale } from "@consts";
 import { Icon } from "astro-icon/components";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import RelatedPostsCard from "@components/RelatedPostsCard.astro";
 import FormattedDate from "@components/FormattedDate.astro";
@@ -16,7 +16,7 @@ import { getEnglishTag } from "@utils/tagMapping";
 export const getStaticPaths = (async () => {
   const posts = await getCollection("posts", ({ id }) => id.startsWith("zh/"));
   return posts.map((post) => ({
-    params: { slug: post.slug.replace(/^zh\//, "") },
+    params: { slug: post.id.replace(/^zh\//, "") },
     props: { post },
   }));
 }) satisfies GetStaticPaths;
@@ -25,8 +25,15 @@ type Props = {
   post: CollectionEntry<"posts">;
 };
 
+const { slug } = Astro.params;
 const { post } = Astro.props as Props;
-const { Content } = await post.render();
+
+if (typeof slug !== "string") {
+  throw new Error("Invalid slug parameter");
+}
+
+const decodedSlug = decodeURI(slug);
+const { Content } = await render(post);
 
 const currentLocale: SupportedLocale = getCurrentLocale(Astro.url.pathname);
 const constants = getConstants(currentLocale);
@@ -60,14 +67,14 @@ const constants = getConstants(currentLocale);
           <a href="/zh/author/" aria-label="Go to homepage">
             <img
               class="h-16 w-16 rounded-full"
-              src="/astrology.avif"
-              alt={post.data.author || "Astrology"}
+              src="/idimi.avif"
+              alt={post.data.author || "iDiMi"}
               loading="lazy"
             />
           </a>
           <div class="ml-3">
             <p class="mb-1 text-sm font-medium text-gray-800 dark:text-neutral-500">
-              {post.data.author || "Astrology"}
+              {post.data.author || "iDiMi"}
             </p>
             <p class="mb-1 text-sm text-gray-400 dark:text-neutral-500">
               {constants.PUBLISHED_ON}
@@ -98,7 +105,7 @@ const constants = getConstants(currentLocale);
     <div class="mt-4">
       <RelatedPostsCard
         currentCategory={post.data.category[0]}
-        currentSlug={post.slug}
+        currentSlug={post.id}
       />
     </div>
   </main>

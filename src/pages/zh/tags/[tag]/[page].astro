@@ -67,13 +67,26 @@ if (typeof tag !== "string") {
   throw new Error("Invalid tag parameter");
 }
 
+const decodedTag = decodeURI(tag);
 const currentLocale = "zh";
-const localizedTag = getTagByLanguage(tag, "en", "zh");
+const localizedTag = getTagByLanguage(decodedTag, "en", currentLocale);
 const { title, description } = getTagMetadata(localizedTag, currentLocale);
 ---
 <BaseLayout title={title} description={description}>
-  <TagsSchema tag={localizedTag} page={page} locale="zh" />
-  <h1 class="sr-only">标签 "{localizedTag}" 下的所有文章</h1>
+  <head>
+    <TagsSchema
+      tag={decodedTag}
+      page={{
+        currentPage: page.currentPage,
+        data: page.data.map((post) => ({
+          slug: post.id,
+          data: { title: post.data.title },
+        })),
+      }}
+      locale={currentLocale}
+    />
+  </head>
+  <h1 class="sr-only">标签「{localizedTag}」下的所有文章</h1>
   <h2 class="sr-only">文章列表</h2>
 
   <div class="mx-auto max-w-4xl px-4 py-8">
@@ -86,15 +99,15 @@ const { title, description } = getTagMetadata(localizedTag, currentLocale);
       lastPage={page.lastPage}
       urlPrev={
         page.currentPage > 1
-          ? `/zh/tags/${tag}/${page.currentPage - 1}`
+          ? `/zh/tags/${localizedTag}/${page.currentPage - 1}`
           : null
       }
       urlNext={
         page.currentPage < page.lastPage
-          ? `/zh/tags/${tag}/${page.currentPage + 1}`
+          ? `/zh/tags/${localizedTag}/${page.currentPage + 1}`
           : null
       }
-      basePath={`/zh/tags/${tag}`}
+      basePath={`/zh/tags/${localizedTag}`}
       maxDisplayedPages={5}
     />
   </div>
