@@ -14,7 +14,7 @@
     "@astrojs/sitemap": "^3.3.0",
     "@preline/theme-switch": "^3.0.0",
     "@tailwindcss/vite": "^4.0.17",
-    "astro": "5.7.2",
+    "astro": "5.7.3",
     "astro-icon": "^1.1.0",
     "astro-pagefind": "^1.5.0",
     "astro-seo": "^0.8.4",
