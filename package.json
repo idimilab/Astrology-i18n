@@ -14,7 +14,7 @@
     "@astrojs/sitemap": "^3.3.0",
     "@preline/theme-switch": "^3.0.0",
     "@tailwindcss/vite": "^4.0.17",
-    "astro": "5.7.14",
+    "astro": "5.8.0",
     "astro-icon": "^1.1.0",
     "astro-pagefind": "^1.5.0",
     "astro-seo": "^0.8.4",
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "4.2.6",
+    "@astrojs/mdx": "4.3.0",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/rss": "^4.0.11",
     "@iconify-json/tabler": "^1.1.115",
