@@ -1,5 +1,5 @@
 ---
-title: first typography
+title: Tailwind Typography
 description: The @tailwind/typography plugin is our attempt to give you what you actually want, without any of the downsides of doing something stupid like disabling our base styles.
 category:
   - build
@@ -9,17 +9,17 @@ tags:
   - third
 pubDate: 2023-09-08
 cover: https://images.unsplash.com/photo-1506794778225-cbf6c8df4c5c?w=1960&h=1102&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fGJsYWNrfGVufDB8MHwwfHx8Mg%3D%3D
-coverAlt: AstroVerse-first-typography
+coverAlt: AstroVerse-Tailwind-typography
 author: astrology
 ---
 
-Until now, trying to style an article, document, or blog post with first has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.
+Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.
 
-By default, first removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you _really are_ just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.
+By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you _really are_ just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.
 
 We get lots of complaints about it actually, with people regularly asking us things like:
 
-> Why is first removing the default styles on my `h1` elements? How do I disable this? What do you mean I lose all the other base styles too?
+> Why is Tailwind removing the default styles on my `h1` elements? How do I disable this? What do you mean I lose all the other base styles too?
 
 We hear you, but we're not convinced that simply disabling our base styles is what you really want. You don't want to have to remove annoying margins every time you use a `p` element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look _awesome_, not awful.
 
@@ -110,7 +110,7 @@ After this sort of list I usually have a closing statement or paragraph, because
 
 I think most people are going to use [highlight.js](https://highlightjs.org/) or [Prism](https://prismjs.com/) or something if they want to style their code blocks but it wouldn't hurt to make them look _okay_ out of the box, even with no syntax highlighting.
 
-Here's what a default `first.config.js` file looks like at the time of writing:
+Here's what a default `tailwind.config.js` file looks like at the time of writing:
 
 ```js
 module.exports = {
@@ -167,7 +167,7 @@ And finally a sentence to close off this section.
 
 ## There are other elements we need to style
 
-I almost forgot to mention links, like [this link to the first CSS website](https://tailwind.com/). We almost made them blue but that's so yesterday, so we went with dark gray, feels edgier.
+I almost forgot to mention links, like [this link to the Tailwind CSS website](https://tailwind.com/). We almost made them blue but that's so yesterday, so we went with dark gray, feels edgier.
 
 We even included table styles, check it out:
 

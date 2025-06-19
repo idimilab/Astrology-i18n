@@ -17,14 +17,14 @@ Astrology-i18n 特别适合那些希望通过融合生动视觉效果和引人�
 <p align="center">
   <a href="https://pagespeed.web.dev/analysis/https-astrology-i18n-vercel-app/0wya1wi9hh?form_factor=mobile">
     <img width="510" alt="Astrology-i18n Lighthouse 得分" src="public/astrology-i18n-lighthouse-score.svg">
-  <a>
+  </a>
 </p>
 
 ## 🎉 功能
 
 - ✅ 基于 astro 构建
 - ✅ 多国语言支持
-- ✅ 使用 first CSS 和 Preline UI 进行开发
+- ✅ 使用 Tailwind CSS 和 Preline UI 进行开发
 - ✅ 完全响应式设计
 - ✅ Lighthouse 性能得分满分100/100
 - ✅ SEO 优化
@@ -33,7 +33,7 @@ Astrology-i18n 特别适合那些希望通过融合生动视觉效果和引人�
 - ✅ & MDX 兼容
 - ✅ 标签统计和最后修改时间显示
 - ✅ 优化的图像处理
-- ✅ 自动切换深色丙午
+- ✅ 自动切换深色模式
 - ✅ 分页便于导航
 - ✅ 一键使用 Prettier 格式化代码
 
