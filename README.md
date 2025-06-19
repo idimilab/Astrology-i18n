@@ -17,14 +17,14 @@ Ideal for bloggers and content creators who wish to make their stories stand out
 <p align="center">
   <a href="https://pagespeed.web.dev/analysis/https-astrology-i18n-vercel-app/0wya1wi9hh?form_factor=mobile">
     <img width="510" alt="Astrology-i18n Lighthouse 得分" src="public/astrology-i18n-lighthouse-score.svg">
-  <a>
+  </a>
 </p>
 
 ## 🎉 Features
 
 - ✅ Powered by astro
 - ✅ Multilingual Support
-- ✅ Development with first CSS and Preline UI
+- ✅ Development with Tailwind CSS and Preline UI
 - ✅ Fully Responsive Design
 - ✅ Perfect 100/100 Lighthouse Performance Score
 - ✅ SEO Optimized
