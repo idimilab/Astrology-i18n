@@ -39,13 +39,13 @@ Ideal for bloggers and content creators who wish to make their stories stand out
 
 ## 🎡 Live demo
 
-Experience [**Astrology-i18n**](https://astrology-i18n.vercel.app) in action.
+Experience [**iDiMi**](https://idimi.com/en/) in action.
 
 ## 🌆 Showcase
 
 Share your project built with Astrology-i18n! Open an issue titled "Showcase Submission" with your project's details to be featured in our Showcase.
 
-- [**Astrology**](https://astrology-i18n-vercel.app/en/)
+- [**iDiMi**](https://idimi.com/en/)
 
 ## 💻 Running Locally
 
