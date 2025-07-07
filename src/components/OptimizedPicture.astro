@@ -4,8 +4,7 @@ import { Picture } from "astro:assets";
 interface Props {
   src: string;
   alt: string;
-  widths?: number[];
-  sizes?: string;
+  formats?: string[];
   class?: string;
   loading?: "lazy" | "eager";
   fetchpriority?: "high" | "low" | "auto";
@@ -14,42 +13,19 @@ interface Props {
 const {
   src,
   alt,
-  widths = [320, 640, 960, 1280, 1600, 1960],
-  sizes = `(max-width: 320px) 320px,
-           (max-width: 640px) 640px,
-           (max-width: 960px) 960px,
-           (max-width: 1280px) 1280px,
-           (max-width: 1600px) 1600px,
-           1960px`,
+  formats = ["avif"],
   class: className = "mx-auto w-full max-w-full rounded-lg",
   loading = "lazy",
   fetchpriority = "auto",
 } = Astro.props;
-
-const isRemote = src.startsWith("http://") || src.startsWith("https://");
 ---
 
-{
-  isRemote ? (
-    <img
-      src={src}
-      alt={alt}
-      class={className}
-      loading={loading}
-      fetchpriority={fetchpriority}
-    />
-  ) : (
-    <Picture
-      src={src}
-      alt={alt}
-      widths={widths}
-      sizes={sizes}
-      formats={["avif"]}
-      fallbackFormat="avif"
-      class={className}
-      loading={loading}
-      fetchpriority={fetchpriority}
-      inferSize
-    />
-  )
-}
+<Picture
+  src={src}
+  alt={alt}
+  formats={formats}
+  class={className}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  inferSize={true}
+/>

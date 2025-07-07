@@ -24,6 +24,8 @@ export default defineConfig({
     },
   },
   image: {
+    responsiveStyles: true,
+    layout: 'constrained',
     remotePatterns: [
       {
         protocol: "https",

@@ -11,7 +11,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.3.0",
+    "@astrojs/sitemap": "3.4.1",
     "@preline/theme-switch": "^3.0.0",
     "@tailwindcss/vite": "^4.0.17",
     "astro": "5.11.0",
@@ -30,7 +30,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "4.3.0",
     "@astrojs/partytown": "^2.1.4",
-    "@astrojs/rss": "^4.0.11",
+    "@astrojs/rss": "4.0.12",
     "@iconify-json/tabler": "^1.1.115",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
