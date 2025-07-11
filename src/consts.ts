@@ -25,9 +25,9 @@ export interface LanguageConstants {
 const zhConstants: LanguageConstants = {
   BrandName: "Astrology",
   SITE_TITLE: "Astrology",
-  SITE_DESCRIPTION: "在生活的海洋，创业的波涛和投资的迷雾中前行。",
+  SITE_DESCRIPTION: "在地支的海洋，五行的波涛和天干的迷雾中前行。",
   TAGS_TITLE: "所有标签",
-  TAGS_DESCRIPTION: "在生活的海洋，创业的波涛和投资的迷雾中前行。",
+  TAGS_DESCRIPTION: "在地支的海洋，五行的波涛和天干的迷雾中前行。",
   SEARCH_PAGE_TITLE: "站内搜索",
   SEARCH_PAGE_DESCRIPTION: "搜索Astrology全站内容",
   GO_TO_HOMEPAGE: "返回首页",
@@ -39,9 +39,9 @@ const zhConstants: LanguageConstants = {
   PUBLISHED_ON: "发布于",
   TAGS_HEADING: "标签",
   FOOTER_ABOUT: "关于我们",
-  FOOTER_BUILD: "创业",
-  FOOTER_INVEST: "投资",
-  FOOTER_LIFE: "生活",
+  FOOTER_BUILD: "五行",
+  FOOTER_INVEST: "天干",
+  FOOTER_LIFE: "地支",
 };
 
 const enConstants: LanguageConstants = {

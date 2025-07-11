@@ -1,9 +1,9 @@
 type CategoryMap = Record<string, string>;
 
 const zhCategories: CategoryMap = {
-  生活: "life",
-  投资: "invest",
-  创业: "build",
+  地支: "life",
+  天干: "invest",
+  五行: "build",
 };
 
 const enCategories: CategoryMap = {
