@@ -49,6 +49,6 @@ export function getPrivacyPolicyPath(lang: SupportedLocale): string {
 }
 
 export function getTextAlignClass(locale: SupportedLocale): string {
-  const justifyLocales: SupportedLocale[] = ["zh", "ja", "ko"];
+  const justifyLocales: SupportedLocale[] = ["zh"];
   return justifyLocales.includes(locale) ? "text-justify" : "text-left";
 }
