@@ -32,7 +32,12 @@ const currentLocale = getCurrentLocale(post.id);
         <span>{post.data.tags.join(" ")}</span>
         <FormattedDate date={post.data.pubDate} />
       </div>
-      <h3 class="mt-2 text-lg font-bold text-white">{post.data.title}</h3>
+       <h3
+        class="text-lg font-bold text-white line-clamp-2 leading-snug break-words"
+        title={post.data.title}
+      >
+        {post.data.title}
+      </h3>
     </div>
   </a>
 </div>

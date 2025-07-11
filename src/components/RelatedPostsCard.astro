@@ -70,7 +70,10 @@ const safeGetRelativeLocaleUrl = (path: string) =>
                 </div>
                 <FormattedDate date={post.data.pubDate} />
               </div>
-              <h2 class="mt-2 text-lg font-bold text-white">
+              <h2
+                class="mt-2 text-lg font-bold text-white line-clamp-2 leading-snug break-words"
+                title={post.data.title}
+              >
                 {post.data.title}
               </h2>
             </div>
