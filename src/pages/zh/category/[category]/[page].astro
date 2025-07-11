@@ -95,13 +95,14 @@ const { title, description } = getCategoryMetadata(
       currentPage={page.currentPage}
       lastPage={page.lastPage}
       urlPrev={page.currentPage > 1
-        ? `/zh/category/${localizedCategory}/${page.currentPage - 1}`
+        ? `/zh/category/${category}/${page.currentPage - 1}`
         : null}
       urlNext={page.currentPage < page.lastPage
-        ? `/zh/category/${localizedCategory}/${page.currentPage + 1}`
+        ? `/zh/category/${category}/${page.currentPage + 1}`
         : null}
-      basePath={`/zh/category/${localizedCategory}`}
+      basePath={`/zh/category/${category}`}
       maxDisplayedPages={5}
     />
   </div>
 </BaseLayout>
+

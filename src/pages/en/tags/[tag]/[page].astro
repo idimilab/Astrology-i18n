@@ -98,12 +98,12 @@ const { title, description } = getTagMetadata(localizedTag, currentLocale);
       currentPage={page.currentPage}
       lastPage={page.lastPage}
       urlPrev={page.currentPage > 1
-        ? `/en/tags/${localizedTag}/${page.currentPage - 1}`
+        ? `/en/tags/${tag}/${page.currentPage - 1}`
         : null}
       urlNext={page.currentPage < page.lastPage
-        ? `/en/tags/${localizedTag}/${page.currentPage + 1}`
+        ? `/en/tags/${tag}/${page.currentPage + 1}`
         : null}
-      basePath={`/en/tags/${localizedTag}`}
+      basePath={`/en/tags/${tag}`}
       maxDisplayedPages={5}
     />
   </div>
