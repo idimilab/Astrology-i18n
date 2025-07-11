@@ -64,7 +64,8 @@ const postUrl = getRelativeLocaleUrl(currentLocale, `posts/${cleanSlug}`);
         {post.data.title}
       </h3>
       <p
-        class="mt-3 text-white dark:text-white md:text-neutral-900 hidden md:block"
+        class="mt-3 text-white dark:text-white md:text-neutral-900 hidden md:block line-clamp-3 break-words leading-snug"
+        title={post.data.description}
       >
         {truncatedDescription}
       </p>
