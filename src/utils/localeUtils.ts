@@ -47,3 +47,8 @@ export function getPrivacyPolicyName(lang: SupportedLocale): string {
 export function getPrivacyPolicyPath(lang: SupportedLocale): string {
   return privacyPolicyPaths[lang] ?? privacyPolicyPaths.en;
 }
+
+export function getTextAlignClass(locale: SupportedLocale): string {
+  const justifyLocales: SupportedLocale[] = ["zh", "ja", "ko"];
+  return justifyLocales.includes(locale) ? "text-justify" : "text-left";
+}

@@ -10,7 +10,7 @@ import FormattedDate from "@components/FormattedDate.astro";
 import OptimizedCover from "@components/OptimizedPicture.astro";
 import { getConstants } from "@consts";
 import PostsSchema from "@seo/PostsSchema.astro";
-import { getCurrentLocale } from "@utils/localeUtils";
+import { getCurrentLocale, getTextAlignClass } from "@utils/localeUtils";
 import { getEnglishTag } from "@utils/tagMapping";
 
 export const getStaticPaths = (async () => {
@@ -61,7 +61,7 @@ const constants = getConstants(currentLocale);
           )
         }
       </div>
-      <div class="text-justify">
+      <div class={getTextAlignClass(currentLocale)}>
         <Content />
       </div>
       <div
