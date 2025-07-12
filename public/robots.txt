@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://astrology-i18n.vercel.app/sitemap-index.xml
