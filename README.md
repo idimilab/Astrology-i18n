@@ -55,7 +55,7 @@ Share your project built with Astrology-i18n! Open an issue titled "Showcase Sub
 - [Preline UI](https://preline.co/).
 - [astro](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode).
 
-1. Fork or use this [template](https://github.com/Astrologylab/Astrology-i18n)
+1. Fork or use this [template](https://github.com/idimilab/Astrology-i18n/Astrology-i18n)
 
 2. Install dependencies:
 
@@ -90,7 +90,7 @@ All commands are run from the root of the project, from a terminal:
 
 Click the button below to start deploying your project on Vercel:
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/Astrologylab/Astrology-i18n)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/idimilab/Astrology-i18n/Astrology-i18n)
 
 ## ✨ Join and Contribute
 

@@ -10,7 +10,7 @@ const constants = getConstants(currentLocale);
 
 const siteUrl = Astro.site
   ? `${Astro.site.toString().replace(/\/?$/, "/")}`
-  : "https://astrology-i18n-vercel.app/";
+  : "https://astrology-i18n.vercel.app/";
 const siteName = constants.SITE_TITLE;
 const organizationName = `${constants.SITE_TITLE} Lab`;
 
@@ -18,8 +18,8 @@ const logoPath = "/favicon.ico";
 const logoUrl = new URL(logoPath, siteUrl).toString();
 
 const socialLinks = [
-  "https://twitter.com/Astrologylab",
-  "https://github.com/Astrologylablab",
+  "https://twitter.com/idimilab",
+  "https://github.com/idimilab/Astrology-i18nlab",
 ];
 
 const siteDescription = constants.SITE_DESCRIPTION;
