@@ -25,7 +25,6 @@ supportedLanguages.forEach((locale) => {
 });
 
 localeUrls[currentLocale] = currentPath;
-
 const languageNames = getLanguageNames();
 ---
 
@@ -33,29 +32,25 @@ const languageNames = getLanguageNames();
   <button
     id="footer-language-dropdown"
     type="button"
-    class="hs-dropdown-toggle inline-flex items-center gap-x-2 rounded-lg bg-white px-3 py-2 text-sm text-neutral-600 hover:text-neutral-900 focus:outline-none focus:text-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
+    class="hs-dropdown-toggle inline-flex items-center rounded-full px-3 py-2 text-sm font-medium text-black hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-white/10 transition-colors"
+    aria-label="Language"
   >
-    {languageNames[currentLocale]}
-    <Icon
-      name="tabler:chevron-up"
-      class="size-4 shrink-0 text-neutral-600 hs-dropdown-open:rotate-180 dark:text-neutral-400"
-    />
+    <Icon name="tabler:world" class="icon-base" />
   </button>
   <div
-    class="hs-dropdown-menu duration z-10 hidden w-40 rounded-lg bg-white p-2 opacity-0 shadow-md transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:divide-neutral-700 dark:border dark:border-neutral-700 dark:bg-neutral-800"
+    class="hs-dropdown-menu z-10 hidden w-40 rounded-lg bg-white p-2 shadow-md opacity-0 transition-[opacity,margin] hs-dropdown-open:opacity-100 dark:divide-neutral-700 dark:border dark:border-neutral-700 dark:bg-neutral-800"
     aria-labelledby="footer-language-dropdown"
   >
     {
-      supportedLanguages.map(
-        (locale) =>
-          locale !== currentLocale && (
-            <a
-              class="flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:text-neutral-800 focus:outline-none focus:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200"
-              href={localeUrls[locale]}
-            >
-              {languageNames[locale]}
-            </a>
-          ),
+      supportedLanguages.map((locale) =>
+        locale !== currentLocale && (
+          <a
+            class="flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm text-neutral-600 hover:text-neutral-800 focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors"
+            href={localeUrls[locale]}
+          >
+            {languageNames[locale]}
+          </a>
+        ),
       )
     }
   </div>

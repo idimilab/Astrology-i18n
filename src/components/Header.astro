@@ -3,6 +3,7 @@ import HeaderLinks from "@components/HeaderLinks.astro";
 import { Icon } from "astro-icon/components";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getCurrentLocale, getBrandName } from "@utils/localeUtils";
+import LanguageSwitcher from "@components/LanguageSwitcher.astro";
 
 const currentLocale = getCurrentLocale(Astro.url.pathname);
 const brandName = getBrandName(currentLocale);
@@ -45,18 +46,20 @@ const safeGetRelativeLocaleUrl = (path: string) =>
     <div
       class="ms-auto flex items-center gap-x-2 py-1 lg:order-3 lg:col-span-3 lg:ps-6"
     >
+      <!-- Search Button -->
       <button
         type="button"
         onclick={`window.location.href='${safeGetRelativeLocaleUrl("/search/")}'`}
-        class="inline-flex items-center gap-x-2 rounded-full px-3 py-2 text-sm font-medium text-black hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:text-white dark:hover:bg-white/10 dark:hover:text-white"
+        class="inline-flex items-center gap-x-2 rounded-full px-3 py-2 text-sm font-medium text-black hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-white/10 transition-colors"
         aria-label="Search"
       >
         <Icon name="tabler:search" class="icon-base" />
       </button>
 
+      <!-- Dark Mode Toggle -->
       <button
         type="button"
-        class="hs-dark-mode inline-flex items-center gap-x-2 rounded-full px-3 py-2 text-sm text-black hover:bg-white/20 hs-dark-mode-active:hidden"
+        class="hs-dark-mode inline-flex items-center gap-x-2 rounded-full px-3 py-2 text-sm text-black hover:bg-neutral-100 hs-dark-mode-active:hidden dark:text-white dark:hover:bg-white/10 transition-colors"
         data-hs-theme-click-value="dark"
         aria-label="Light"
       >
@@ -64,17 +67,21 @@ const safeGetRelativeLocaleUrl = (path: string) =>
       </button>
       <button
         type="button"
-        class="hs-dark-mode hidden items-center gap-x-2 rounded-full px-3 py-2 text-sm text-white hover:bg-white/20 hs-dark-mode-active:inline-flex"
+        class="hs-dark-mode hidden items-center gap-x-2 rounded-full px-3 py-2 text-sm text-black hover:bg-neutral-100 hs-dark-mode-active:inline-flex dark:text-white dark:hover:bg-white/10 transition-colors"
         data-hs-theme-click-value="light"
         aria-label="Dark"
       >
         <Icon name="tabler:sun-filled" class="icon-base" />
       </button>
 
+      <!-- Language Switcher -->
+      <LanguageSwitcher />
+
+      <!-- Mobile Menu Toggle -->
       <div class="lg:hidden">
         <button
           type="button"
-          class="hs-collapse-toggle flex size-[38px] items-center justify-center text-sm font-semibold text-black hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700"
+          class="hs-collapse-toggle flex size-[38px] items-center justify-center text-sm font-semibold text-black hover:bg-neutral-100 disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-white/10 transition-colors"
           data-hs-collapse="#navbar-collapse-with-animation"
           aria-controls="navbar-collapse-with-animation"
           aria-label="Toggle navigation"
