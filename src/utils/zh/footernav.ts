@@ -1,23 +1,23 @@
 export const life = [
-  { text: "沉思", href: "/" },
-  { text: "观阅", href: "/" },
-  { text: "行走", href: "/" },
+  { text: "甲子", href: "/" },
+  { text: "乙子", href: "/" },
+  { text: "丙子", href: "/" },
 ];
 
 export const invest = [
-  { text: "风险", href: "/" },
-  { text: "策略", href: "/" },
-  { text: "配置", href: "/" },
+  { text: "丁子", href: "/" },
+  { text: "戊子", href: "/" },
+  { text: "甲丑", href: "/" },
 ];
 
 export const build = [
-  { text: "创新", href: "/" },
-  { text: "模式", href: "/" },
-  { text: "管理", href: "/" },
+  { text: "乙丑", href: "/" },
+  { text: "丙丑", href: "/" },
+  { text: "丁丑", href: "/" },
 ];
 
 export const more = [
-  { text: "关于", href: "/" },
-  { text: "友链", href: "/" },
-  { text: "导航", href: "/" },
+  { text: "甲寅", href: "/" },
+  { text: "乙寅", href: "/" },
+  { text: "丙寅", href: "/" },
 ];

@@ -4,7 +4,7 @@ description: Add an RSS feed to your astro site to let users subscribe to your c
 category:
   - life
 tags:
-  - RSS
+  - first
   - second
   - third
 pubDate: 2023-09-06

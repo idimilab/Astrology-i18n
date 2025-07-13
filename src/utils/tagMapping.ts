@@ -1,9 +1,9 @@
 type TagMap = Record<string, string>;
 
 const zhTags: TagMap = {
-  沉思: "reflect",
-  观阅: "media",
-  行走: "roam",
+  甲戌: "first",
+  乙未: "second",
+  丙寅: "third",
   风险: "risk",
   策略: "strategy",
   配置: "allocation",
@@ -13,9 +13,9 @@ const zhTags: TagMap = {
 };
 
 const enTags: TagMap = {
-  reflect: "reflect",
-  media: "media",
-  roam: "roam",
+  first: "first",
+  second: "second",
+  third: "third",
   risk: "risk",
   strategy: "strategy",
   allocation: "allocation",
